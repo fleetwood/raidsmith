@@ -1,39 +1,30 @@
-const { Sequelize } = require('sequelize');
-const { lookups } = require('./lookups');
+const {Sequelize, Model, DataTypes, sequelize} = require('./../db');
 
-//TODO: move db to postgres
-//TODO: move config to env
-const sequelize = new Sequelize({
-	dialect: 'sqlite',
-	storage: 'db/data/db.sqlite',
-	logQueryParameters: true,
-	benchmark: true
-});
+const Artifact = require('./models/Artifact.model')
+	, Attribute = require('./models/Attribute.model')
+	, Character = require('./models/Character.model')
+	, Faction = require('./models/Faction.model')
+	, Rarity = require('./models/Rarity.model')
+	, Set = require('./models/Set.model');
+const { associations } = require('./associations');
 
-const modelDefiners = [
-	require('./models/Artifact.model')
-	, require('./models/Attribute.model')
-	, require('./models/Character.model')
-	, require('./models/Faction.model')
-	, require('./models/Rarity.model')
-	, require('./models/Set.model')
-];
-
-for (const modelDefiner of modelDefiners) {
-	modelDefiner(sequelize);
-}
-Promise
-	.all(modelDefiners.forEach(model => model(sequelize)))
-	.then(() => {
-		//TODO: lookups aren't working in db setup
-		Promise.all(modelDefiners.forEach(model => model.lookups(sequelize)))
-			.then(() => {
-				sequelize.sync({force: true});
-				console.log('Setup complete!');
-			});
-	})
+Promise.all([
+	Artifact.define(),
+	Attribute.define(),
+	Character.define(),
+	Faction.define(),
+	Rarity.define(),
+	Set.define()
+])
+	.then(() => associations(sequelize.models))
 	.catch(e => {
-		console.log(e.message)
+		console.log(e.message || e);
 	});
 
-module.exports = sequelize;
+module.exports = {
+	Sequelize,
+	Model,
+	DataTypes,
+	sequelize,
+	models: sequelize.models
+}

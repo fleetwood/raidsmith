@@ -1,5 +1,5 @@
 const app = require('./express/app');
-const sequelize = require('./sequelize');
+const { sequelize } = require('./sequelize');
 const PORT = 8080;
 
 async function assertDatabaseConnectionOk() {

@@ -1,4 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
+const _ = require('underscore');
+const { sequelize, Model, DataTypes} = require('./../../db');
 
 const schema = {
 	name: {
@@ -7,34 +8,21 @@ const schema = {
 	}
 }
 
-class Attribute extends Model {}
+class Attribute extends Model {};
+Attribute.define = () => Attribute.init(schema, {sequelize});
+
 Attribute.inclusions = [];
 Attribute.addToIncludes = (model) => {
+	if (Array.isArray(model)) {
+		model.forEach(m => Attribute.addToIncludes(m));
+		return;
+	}
     if (!_.contains(Attribute.inclusions, model)) {
         Attribute.inclusions.push(model);
     }
 }
-Attribute.lookups = (sequelize) => {
-	const { 
-		Artifact,
-		Character,
-		Set
-	} = sequelize.models;
-	Attribute.belongsToMany(Artifact, {
-		through: 'ArtifactAttributes'
-		, as: 'attributes'
-		, foreignKey: 'ArtifactId'
-	});
-	Attribute.belongsToMany(Character, {
-		through: 'CharacterAttributes'
-		, as: 'attributes'
-		, foreignKey: 'CharacterId'
-	});
-	Attribute.belongsToMany(Set, {
-		through: 'SetAttributes'
-		, as: 'attributes'
-		, foreignKey: 'SetId'
-	});
-}
 
-module.exports = (sequelize) => sequelize.define('Attribute', schema);
+Attribute.findAllEager = (where) => Attribute.findAll(_.extend({ include: Attribute.inclusions }, where));
+Attribute.findOneEager = (where) => Attribute.findOne(_.extend({ include: Attribute.inclusions }, where));
+
+module.exports = Attribute;

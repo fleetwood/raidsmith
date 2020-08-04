@@ -2,13 +2,17 @@ const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
-	const rarities = await models.Rarity.findAll();
+	const rarities = 'eager' in req.query ?
+		await models.Rarity.findAllEager():
+		await models.Rarity.findAll();
 	res.status(200).json(rarities);
 };
 
 async function getById(req, res) {
 	const id = getIdParam(req);
-	const rarities = await models.Rarity.findByPk(id);
+	const rarities = 'eager' in req.query ?
+		await models.Rarity.findOneEager({id}) :
+		await models.Rarity.findByPk(id);
 	if (rarities) {
 		res.status(200).json(rarities);
 	} else {

@@ -1,4 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
+const _ = require('underscore');
+const { sequelize, Model, DataTypes} = require('./../../db');
+
 const schema = {
 	name: {
 		allowNull: false,
@@ -21,23 +23,20 @@ const schema = {
 };
 
 class Character extends Model {}
+Character.define = () => Character.init(schema, {sequelize});
+
 Character.inclusions = [];
 Character.addToIncludes = (model) => {
+	if (Array.isArray(model)) {
+		model.forEach(m => Character.addToIncludes(m));
+		return;
+	}
     if (!_.contains(Character.inclusions, model)) {
         Character.inclusions.push(model);
     }
 }
-Character.lookups = (sequelize) => {
-	const { 
-		Artifact,
-		Attribute,
-		Faction,
-		Rarity
-	} = sequelize.models;
-	Character.hasMany(Artifact);
-	Character.hasMany(Attribute);
-	Character.hasOne(Faction);
-	Character.hasOne(Rarity);
-}
 
-module.exports = (sequelize) => sequelize.define('Character', schema);
+Character.findAllEager = (where) => Character.findAll(_.extend({ include: Character.inclusions }, where));
+Character.findOneEager = (where) => Character.findOne(_.extend({ include: Character.inclusions }, where));
+
+module.exports = Character;

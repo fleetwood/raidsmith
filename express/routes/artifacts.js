@@ -2,19 +2,19 @@ const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
-	const Artifacts = 'includeAttributes' in req.query ?
-		await models.Artifact.findAll({ include: models.Attribute }) :
+	const artifacts = 'eager' in req.query ?
+		await models.Artifact.findAllEager():
 		await models.Artifact.findAll();
-	res.status(200).json(Artifacts);
+	res.status(200).json(artifacts);
 };
 
 async function getById(req, res) {
 	const id = getIdParam(req);
-	const Artifact = 'includeAttributes' in req.query ?
-		await models.Artifact.findByPk(id, { include: models.Attribute }) :
+	const artifacts = 'eager' in req.query ?
+		await models.Artifact.findOneEager({id}) :
 		await models.Artifact.findByPk(id);
-	if (Artifact) {
-		res.status(200).json(Artifact);
+	if (artifacts) {
+		res.status(200).json(artifacts);
 	} else {
 		res.status(404).send('404 - Not found');
 	}
@@ -32,6 +32,7 @@ async function create(req, res) {
 async function update(req, res) {
 	const id = getIdParam(req);
 
+	// We only accept an UPDATE request if the `:id` param matches the body `id`
 	if (req.body.id === id) {
 		await models.Artifact.update(req.body, {
 			where: {

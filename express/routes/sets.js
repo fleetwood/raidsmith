@@ -2,13 +2,17 @@ const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
-	const sets = await models.Set.findAll();
+	const sets = 'eager' in req.query ?
+		await models.Set.findAllEager():
+		await models.Set.findAll();
 	res.status(200).json(sets);
 };
 
 async function getById(req, res) {
 	const id = getIdParam(req);
-	const sets = await models.Set.findByPk(id);
+	const sets = 'eager' in req.query ?
+		await models.Set.findOneEager({id}) :
+		await models.Set.findByPk(id);
 	if (sets) {
 		res.status(200).json(sets);
 	} else {
