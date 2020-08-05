@@ -1,0 +1,5 @@
+I"÷
+<h5 id="svg-images-and-internet-explorer">SVG images and Internet Explorer</h5>
+
+<p>In Internet Explorer 10 and 11, SVG images with <code class="language-plaintext highlighter-rouge">.img-fluid</code> are disproportionately sized. To fix this, add <code class="language-plaintext highlighter-rouge">width: 100%;</code> or <code class="language-plaintext highlighter-rouge">.w-100</code> where necessary. This fix improperly sizes other image formats, so Bootstrap doesnâ€™t apply it automatically.</p>
+:ET

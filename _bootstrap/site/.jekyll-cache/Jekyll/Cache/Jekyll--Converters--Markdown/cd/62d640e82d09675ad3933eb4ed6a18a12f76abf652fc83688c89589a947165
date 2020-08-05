@@ -1,0 +1,6 @@
+I"
+<h2 id="selectors">Selectors</h2>
+
+<p>Currently to query DOM elements we use the native methods <code class="language-plaintext highlighter-rouge">querySelector</code> and <code class="language-plaintext highlighter-rouge">querySelectorAll</code> for performance reasons, so you have to use <a href="https://www.w3.org/TR/CSS21/syndata.html#value-def-identifier">valid selectors</a>.
+If you use special selectors, for example: <code class="language-plaintext highlighter-rouge">collapse:Example</code> be sure to escape them.</p>
+:ET

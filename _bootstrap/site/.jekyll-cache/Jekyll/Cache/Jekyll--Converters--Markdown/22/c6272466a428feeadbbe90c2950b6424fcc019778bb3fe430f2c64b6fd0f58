@@ -1,0 +1,7 @@
+I"¡
+<h5 id="caveat-with-anchors">Caveat with anchors</h5>
+
+<p>Browsers treat all native form controls (<code class="language-plaintext highlighter-rouge">&lt;input&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code>, and <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> elements) inside a <code class="language-plaintext highlighter-rouge">&lt;fieldset disabled&gt;</code> as disabled, preventing both keyboard and mouse interactions on them.</p>
+
+<p>However, if your form also includes custom button-like elements such as <code class="language-plaintext highlighter-rouge">&lt;a ... class="btn btn-*"&gt;</code>, these will only be given a style of <code class="language-plaintext highlighter-rouge">pointer-events: none</code>. As noted in the section about <a href="/docs/4.5/components/buttons/#disabled-state">disabled state for buttons</a> (and specifically in the sub-section for anchor elements), this CSS property is not yet standardized and isnâ€™t fully supported in Internet Explorer 10. The anchor-based controls will also still be focusable and operable using the keyboard. You must manually modify these controls by adding <code class="language-plaintext highlighter-rouge">tabindex="-1"</code> to prevent them from receiving focus and <code class="language-plaintext highlighter-rouge">aria-disabled="disabled"</code> to signal their state to assistive technologies.</p>
+:ET

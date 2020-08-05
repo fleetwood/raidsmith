@@ -1,0 +1,20 @@
+I"�<p>Community members have translated Bootstrap’s documentation into various languages. None are officially supported and they may not always be up to date.</p>
+
+<ul>
+
+  <li><a href="https://bootstrap.hexschool.com/" hreflang="zh-tw">Bootstrap 4 繁體中文手冊 (中文(繁體))</a></li>
+
+  <li><a href="https://code.z01.com/v4/" hreflang="zh">Bootstrap 4 · 全球最流行的 HTML、CSS 和 JS 工具库。 (Chinese)</a></li>
+
+  <li><a href="https://getbootstrap.com.br/v4/" hreflang="pt-BR">Bootstrap 4 Português do Brasil (Brazilian Portuguese)</a></li>
+
+  <li><a href="https://getbootstrap.jp/" hreflang="ja">Bootstrap 4 日本語リファレンス (Japanese)</a></li>
+
+  <li><a href="https://getbootstrap.kr/" hreflang="ko">Bootstrap 4 한국어 문서 (Korean)</a></li>
+
+</ul>
+
+<p><strong>We don’t help organize or host translations, we just link to them.</strong></p>
+
+<p>Finished a new or better translation? Open a pull request to add it to our list.</p>
+:ET
