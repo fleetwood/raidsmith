@@ -1,10 +1,20 @@
-const { auth } = require('./../config');
+const { auth, server } = require('./../config');
+const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
+const Handlebars = require('handlebars');
+const exphbs = require('express-handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const helpers = require('./../views/scripts/helpers');
 const { google } = require('googleapis');
 const googleAuth = auth.google;
+const isDev = server.env == 'development';
 
-const oAuth2Client = new google.auth.OAuth2(googleAuth.client_id, googleAuth.client_secret, googleAuth.redirect_uris[0]);
+const oAuth2Client = new google.auth.OAuth2(
+	googleAuth.client_id
+	, googleAuth.client_secret
+	, googleAuth.redirect_uris[isDev ? 1 : 0]
+);
 var authed = false;
 
 const routes = {
@@ -20,6 +30,27 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function (req, res, next) {
+  req.rawBody = '';
+  req.on('data', (chunk) => req.rawBody += chunk);
+  next();
+});
+
+// use express-handlebars view engine and set views template directory
+const hbs = exphbs.create({
+	handlebars: allowInsecurePrototypeAccess(Handlebars),
+	extname: '.hbs',
+	partialsDir: __dirname + '/views/partials',
+	helpers: helpers()
+  })
+  app.engine('.hbs', hbs.engine);
+  app.set('view engine', '.hbs');
+  app.set('views', __dirname + '/views');
+  
+  // serve static files
+  app.use(express.static(path.resolve(__dirname, 'public'))) // serve public files
+//   app.use(express.static(path.resolve(__dirname, 'data'))) // serve json files
 
 // We create a wrapper to workaround async errors not being transmitted correctly.
 function makeHandlerAwareOfAsyncErrors(handler) {
