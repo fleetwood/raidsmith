@@ -1,5 +1,11 @@
+const { auth } = require('./../config');
 const express = require('express');
 const bodyParser = require('body-parser');
+const { google } = require('googleapis');
+const googleAuth = auth.google;
+
+const oAuth2Client = new google.auth.OAuth2(googleAuth.client_id, googleAuth.client_secret, googleAuth.redirect_uris[0]);
+var authed = false;
 
 const routes = {
 	attributes: require('./routes/attributes')
@@ -8,8 +14,6 @@ const routes = {
 	, factions: require('./routes/factions')
 	, rarities: require('./routes/rarities')
 	, sets: require('./routes/sets')
-	// Add more routes here...
-	// items: require('./routes/items'),
 };
 
 const app = express();
@@ -36,6 +40,53 @@ app.get('/', (req, res) => {
 		<p>Try some routes, such as <a href='/api/users'>/api/users</a> or <a href='/api/orchestras?includeInstruments'>/api/orchestras?includeInstruments</a>!</p>
 		<p>To experiment with POST/PUT/DELETE requests, use a tool for creating HTTP requests such as <a href='https://github.com/jakubroztocil/httpie#readme'>HTTPie</a>, <a href='https://www.postman.com/downloads/'>Postman</a>, or even <a href='https://en.wikipedia.org/wiki/CURL'>the curl command</a>, or write some JS code for it with <a href='https://github.com/sindresorhus/got#readme'>got</a>, <a href='https://github.com/sindresorhus/ky#readme'>ky</a> or <a href='https://github.com/axios/axios#readme'>axios</a>.</p>
 	`);
+});
+
+app.get('/auth', (req, res) => {
+    if (!authed) {
+        // Generate an OAuth URL and redirect there
+        const url = oAuth2Client.generateAuthUrl({
+            access_type: 'offline',
+            scope: 'https://www.googleapis.com/auth/gmail.readonly'
+        });
+        console.log(url)
+        res.redirect(url);
+    } else {
+        const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
+        gmail.users.labels.list({
+            userId: 'me',
+        }, (err, res) => {
+            if (err) return console.log('The API returned an error: ' + err);
+            const labels = res.data.labels;
+            if (labels.length) {
+                console.log('Labels:');
+                labels.forEach((label) => {
+                    console.log(`- ${label.name}`);
+                });
+            } else {
+                console.log('No labels found.');
+            }
+        });
+        res.redirect('/')
+    }
+})
+
+app.get('/auth/google/callback', function (req, res) {
+    const code = req.query.code
+    if (code) {
+        // Get an access token based on our OAuth code
+        oAuth2Client.getToken(code, function (err, tokens) {
+            if (err) {
+                console.log('Error authenticating')
+                console.log(err);
+            } else {
+                console.log('Successfully authenticated');
+                oAuth2Client.setCredentials(tokens);
+                authed = true;
+                res.redirect('/')
+            }
+        });
+    }
 });
 
 // We define the standard REST APIs for each route (if they exist).
