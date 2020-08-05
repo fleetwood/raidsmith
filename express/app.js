@@ -6,16 +6,6 @@ const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const helpers = require('./../views/scripts/helpers');
-const { google } = require('googleapis');
-const googleAuth = auth.google;
-const isDev = server.env == 'development';
-
-const oAuth2Client = new google.auth.OAuth2(
-	googleAuth.client_id
-	, googleAuth.client_secret
-	, googleAuth.redirect_uris[isDev ? 1 : 0]
-);
-var authed = false;
 
 const routes = {
 	attributes: require('./routes/attributes')
@@ -25,6 +15,7 @@ const routes = {
 	, rarities: require('./routes/rarities')
 	, sets: require('./routes/sets')
 };
+const { googleAuth, googleCallback } = require('./routes/auth')
 
 const app = express();
 
@@ -73,82 +64,43 @@ app.get('/', (req, res) => {
 	`);
 });
 
-app.get('/auth', (req, res) => {
-    if (!authed) {
-        // Generate an OAuth URL and redirect there
-        const url = oAuth2Client.generateAuthUrl({
-            access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/gmail.readonly'
-        });
-        console.log(url)
-        res.redirect(url);
-    } else {
-        const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
-        gmail.users.labels.list({
-            userId: 'me',
-        }, (err, res) => {
-            if (err) return console.log('The API returned an error: ' + err);
-            const labels = res.data.labels;
-            if (labels.length) {
-                console.log('Labels:');
-                labels.forEach((label) => {
-                    console.log(`- ${label.name}`);
-                });
-            } else {
-                console.log('No labels found.');
-            }
-        });
-        res.redirect('/')
-    }
-})
-
-app.get('/auth/google/callback', function (req, res) {
-    const code = req.query.code
-    if (code) {
-        // Get an access token based on our OAuth code
-        oAuth2Client.getToken(code, function (err, tokens) {
-            if (err) {
-                console.log('Error authenticating')
-                console.log(err);
-            } else {
-                console.log('Successfully authenticated');
-                oAuth2Client.setCredentials(tokens);
-                authed = true;
-                res.redirect('/')
-            }
-        });
-    }
-});
+googleCallback(app);
+app.get('/auth', (req, res, next) => googleAuth(req, res, next))
 
 // We define the standard REST APIs for each route (if they exist).
 for (const [routeName, routeController] of Object.entries(routes)) {
 	if (routeController.getAll) {
 		app.get(
 			`/api/${routeName}`,
+			(req, res, next) => googleAuth(req, res, next),
 			makeHandlerAwareOfAsyncErrors(routeController.getAll)
 		);
 	}
 	if (routeController.getById) {
 		app.get(
 			`/api/${routeName}/:id`,
+			(req, res, next) => googleAuth(req, res, next),
 			makeHandlerAwareOfAsyncErrors(routeController.getById)
 		);
 	}
 	if (routeController.create) {
 		app.post(
 			`/api/${routeName}`,
+			(req, res, next) => googleAuth(req, res, next),
 			makeHandlerAwareOfAsyncErrors(routeController.create)
 		);
 	}
 	if (routeController.update) {
 		app.put(
 			`/api/${routeName}/:id`,
+			(req, res, next) => googleAuth(req, res, next),
 			makeHandlerAwareOfAsyncErrors(routeController.update)
 		);
 	}
 	if (routeController.remove) {
 		app.delete(
 			`/api/${routeName}/:id`,
+			(req, res, next) => googleAuth(req, res, next),
 			makeHandlerAwareOfAsyncErrors(routeController.remove)
 		);
 	}
