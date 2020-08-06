@@ -1,5 +1,6 @@
 const { auth, server } = require('./../config');
 const path = require('path');
+const isDev = server.env == 'development';
 const express = require('express');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
@@ -9,14 +10,13 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const helpers = require('./../views/scripts/helpers');
 
 const routes = {
-	attributes: require('./routes/attributes')
-	, artifacts: require('./routes/artifacts')
-	, characters: require('./routes/characters')
-	, factions: require('./routes/factions')
-	, rarities: require('./routes/rarities')
-	, sets: require('./routes/sets')
+	attributes: require('./routes/api/attributes')
+	, artifacts: require('./routes/api/artifacts')
+	, characters: require('./routes/api/characters')
+	, factions: require('./routes/api/factions')
+	, rarities: require('./routes/api/rarities')
+	, sets: require('./routes/api/sets')
 };
-const { googleAuth, googleCallback } = require('./routes/auth')
 
 const app = express();
 
@@ -59,11 +59,14 @@ app.get('/', (req, res) => {
 	res.render('home', {
 		layout: 'main'
 		, title: 'RaidSmith'
+		, authUser: app.authUser || null
+		, isDev
 	})
 });
 
-googleCallback(app);
-app.get('/auth', (req, res, next) => googleAuth(req, res, next))
+app.isDev = isDev;
+app.authUser = null;
+require('./auth').init(app);
 
 // We define the standard REST APIs for each route (if they exist).
 for (const [routeName, routeController] of Object.entries(routes)) {

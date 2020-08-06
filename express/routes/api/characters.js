@@ -1,20 +1,20 @@
-const { models } = require('../../sequelize');
-const { getIdParam } = require('../helpers');
+const { models } = require('./../../../sequelize');
+const { getIdParam } = require('./../../helpers');
 
 async function getAll(req, res) {
-	const rarities = 'eager' in req.query ?
-		await models.Rarity.findAllEager():
-		await models.Rarity.findAll();
-	res.status(200).json(rarities);
+	const characters = 'eager' in req.query ?
+		await models.Character.findAllEager():
+		await models.Character.findAll();
+	res.status(200).json(characters);
 };
 
 async function getById(req, res) {
 	const id = getIdParam(req);
-	const rarities = 'eager' in req.query ?
-		await models.Rarity.findOneEager({id}) :
-		await models.Rarity.findByPk(id);
-	if (rarities) {
-		res.status(200).json(rarities);
+	const characters = 'eager' in req.query ?
+		await models.Character.findOneEager({id}) :
+		await models.Character.findByPk(id);
+	if (characters) {
+		res.status(200).json(characters);
 	} else {
 		res.status(404).send('404 - Not found');
 	}
@@ -24,7 +24,7 @@ async function create(req, res) {
 	if (req.body.id) {
 		res.status(400).send(`Bad request: ID should not be provided, since it is determined automatically by the database.`)
 	} else {
-		await models.Rarity.create(req.body);
+		await models.Character.create(req.body);
 		res.status(201).end();
 	}
 };
@@ -34,7 +34,7 @@ async function update(req, res) {
 
 	// We only accept an UPDATE request if the `:id` param matches the body `id`
 	if (req.body.id === id) {
-		await models.Rarity.update(req.body, {
+		await models.Character.update(req.body, {
 			where: {
 				id: id
 			}
@@ -47,7 +47,7 @@ async function update(req, res) {
 
 async function remove(req, res) {
 	const id = getIdParam(req);
-	await models.Rarity.destroy({
+	await models.Character.destroy({
 		where: {
 			id: id
 		}

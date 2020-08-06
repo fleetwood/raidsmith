@@ -1,7 +1,6 @@
 const { server } = require('./config');
 const app = require('./express/app');
 const { sequelize } = require('./sequelize');
-const isDev = server.env == 'development';
 
 async function assertDatabaseConnectionOk() {
 	console.log(`Checking database connection...`);
@@ -24,11 +23,12 @@ async function init() {
 		browserSync({
 		  files: [
 			'public/**/*.{html,js,css}',
-			'public/**/**/*.{js}',
-			'comp/**/*.{js}',
+			'**/**/*.{js}',
 			'**/*.{js}',
 			'*.{js}',
-			'views/**/*.{html,hbs}'
+			'views/**/**/*.{html,hbs}',
+			'views/**/*.{html,hbs}',
+			'views/*.{html,hbs}'
 		  ],
 		  online: false,
 		  open: false,
@@ -41,7 +41,7 @@ async function init() {
 	  }
 
 	  app.listen(server.port,
-		isDev
+		app.isDev
 		  ? devServer
 		  : console.log('Running in production mode')
 	  );
