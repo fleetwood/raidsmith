@@ -15,7 +15,7 @@ html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(6, 15, 21, 0);
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
@@ -123,13 +123,13 @@ sup {
 }
 
 a {
-  color: #0963b6;
+  color: #114f6d;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #053b6d;
+  color: #071f2b;
   text-decoration: underline;
 }
 

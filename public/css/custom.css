@@ -1,10 +1,3 @@
-#bg {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    min-width: 100%;
-    min-height: 100%;
-  }
   /**** MEGAMENU ****/
   @media all and (min-width: 992px) {
     .navbar{ padding-top: 0; padding-bottom: 0; }

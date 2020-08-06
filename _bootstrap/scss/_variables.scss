@@ -43,7 +43,7 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
-$black:    #000 !default;
+$black:    #060f15 !default;
 
 $grays: () !default;
 $grays: map-merge(
@@ -92,8 +92,8 @@ $colors: map-merge(
   $colors
 );
 
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$primary:       $raid-bg-1 !default;
+$secondary:     $raid-bg-3 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;

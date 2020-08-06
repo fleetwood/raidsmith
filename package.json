@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "setup-db": "node db/setup.js"
+    "setup-db": "node db/setup.js",
+    "bootstrap": "cd _bootstrap && npm run dist && cd ../ && cp -R _bootstrap/dist/. public/"
   },
   "engines": {
     "node": ">=10"
