@@ -1,6 +1,5 @@
-const { auth, server } = require('./../config');
+const { auth, server, isDev } = require('./../config');
 const path = require('path');
-const isDev = server.env == 'development';
 const express = require('express');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
@@ -8,6 +7,10 @@ const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const helpers = require('./../views/scripts/helpers');
+const app = express();
+	  app.isDev = isDev;
+	  app.authUser = null;
+const { authInit, googleAuth } = require('./auth');
 
 const routes = {
 	attributes: require('./routes/api/attributes')
@@ -17,8 +20,6 @@ const routes = {
 	, rarities: require('./routes/api/rarities')
 	, sets: require('./routes/api/sets')
 };
-
-const app = express();
 
 // use express-handlebars view engine and set views template directory
 const hbs = exphbs.create({
@@ -54,22 +55,16 @@ function makeHandlerAwareOfAsyncErrors(handler) {
 	};
 }
 
-// We provide a root route just as an example
 app.get('/', (req, res) => {
 	res.render('home', {
 		layout: 'main'
 		, title: 'RaidSmith'
-		, authUser: app.authUser || null
+		, authUser: app.authUser
 		, isDev
 	})
 });
 
-app.isDev = isDev;
-app.authUser = null;
-const { init, googleAuth } = require('./auth')
-init(app);
-
-// We define the standard REST APIs for each route (if they exist).
+authInit(app);
 for (const [routeName, routeController] of Object.entries(routes)) {
 	if (routeController.getAll) {
 		app.get(

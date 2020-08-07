@@ -1,18 +1,8 @@
 const { google } = require('googleapis');
 const gmail = google.gmail('v1');
 const moment = require('moment');
-const { auth, server } = require('../config');
-const isDev = server.env == 'development';
+const { googleAuth } = require('../config');
 let app;
-
-const redirectUri = auth.google.redirect_uris[isDev ? 0 : 1];
-
-const oAuth2Client = new google.auth.OAuth2(
-    auth.google.client_id
-    , auth.google.client_secret
-    //TODO: Using wrong port on live server
-    , redirectUri
-);
 var referrer = '/';
 
 const getUser = () => new Promise((resolve, reject) => {
@@ -21,10 +11,11 @@ const getUser = () => new Promise((resolve, reject) => {
     }
     gmail.users.getProfile({
             userId: 'me',
-            auth: oAuth2Client
+            auth: googleAuth
         }, (err, response) => {
         try {
-            resolve(response.data);
+            app.authUser = response.data;
+            resolve(app.authUser);
         }
         catch(e) {
             reject(err || e);
@@ -32,10 +23,10 @@ const getUser = () => new Promise((resolve, reject) => {
     });
 });
 
-const googleAuth = (req, res, next) => {
+const googleAuthenticate = (req, res, next) => {
     if (!app.authUser) {
         // Generate an OAuth URL and redirect there
-        const url = oAuth2Client.generateAuthUrl({
+        const url = googleAuth.generateAuthUrl({
             access_type: 'offline',
             scope: 'https://www.googleapis.com/auth/gmail.readonly'
         });
@@ -53,17 +44,18 @@ const googleCallback = (req, res, next) => {
     const done = () => res.redirect(referrer);
     if (code) {
         // Get an access token based on our OAuth code
-        oAuth2Client.getToken(code, function (err, tokens) {
+        googleAuth.getToken(code, function (err, tokens) {
             if (err) {
                 console.log('Error authenticating')
                 console.log(err);
                 done();
             } else {
                 console.log('Successfully authenticated');
-                oAuth2Client.setCredentials(tokens);
+                googleAuth.setCredentials(tokens);
                 console.log(moment(tokens.expiry_date));
                 getUser()
                     .then(user => {
+                        //todo: log user to db, prolly needs a controller
                         app.authUser = user;
                         done();
                     })
@@ -76,15 +68,15 @@ const googleCallback = (req, res, next) => {
     }
 }
 
-const init = (instance) => {
+const authInit = (instance) => {
     app = instance;
-    app.get('/auth', (req, res, next) => googleAuth(req, res, next))
+    app.get('/auth', (req, res, next) => googleAuthenticate(req, res, next))
     app.get('/auth/google/callback', (req, res, next) => googleCallback(req, res, next))
 }
 
 module.exports = {
-    googleAuth
+    googleAuthenticate
     , googleCallback
     , getUser
-    , init
+    , authInit
 }
