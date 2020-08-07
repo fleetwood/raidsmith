@@ -66,7 +66,8 @@ app.get('/', (req, res) => {
 
 app.isDev = isDev;
 app.authUser = null;
-require('./auth').init(app);
+const { init, googleAuth } = require('./auth')
+init(app);
 
 // We define the standard REST APIs for each route (if they exist).
 for (const [routeName, routeController] of Object.entries(routes)) {
