@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "raidsmith",
+  "private_key_id": "ef8393e6dfd8be713fab499d9571e0e0b7c9f984",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCS/vnk4uPBEZvw\nq1xILnRBE8QGj/mEpHNKYrYMT42z3m/OeRAEFiKkLw8U/Mq1PI/93wCD7+1t+52E\nByZN6GtCsD+lvpF8jKlIeqM6JcTJ+ziFtyOHdvOyp/3AciTZueOwfD1+0breHc7V\nX5aVsJHw+6DFfFaxBKrFlapy7/63hNZtOBytXsN2cPsWrYy5FIHLzLFg6xnLJvYT\nktOvWHeufUsGRbOZGENmoh79M1QglUu1X6qy2sQGZkxcoZYQEIMOoiAYuI7fAv0E\nYRt+Sj5VvbJQpylMTV63vZQdz7gEQukrVw5svNknc3U61Ydn+VZJD2NXi5UQUP2u\nfssZkoKFAgMBAAECggEAAz5I+TngWJQw4qCFSrprqjvraVGn6btPJ+cBqUfgEoXn\n5aBaMBzk6sZ3CLmDJ3iMnMdc1YxnqrOQiCc4OyPTqgcFgHyx7ROVcJn0HAZVTzeR\nybF+wTBotBpsyOA72+n0EiLLoI60Fs6Fj8OqKOdacPy8UV8q8oDt26ovtpWBAz+M\ngXo+3Pr9Nt0Z9J6plky+q1lRffDIQ2+zXmUJfiZ+dtYT6bjqdu9WQhJmMhjtWmbA\nFS+QyrUGc62x06XdK232t+sr8f1Ax5QkwIdFiSc03JOMbzaKerNNUnzFX7wJZdOU\nqkf2qdsRstveyfkz//sf1eJbUqW2lEDwKqTn8PacgQKBgQDL3I7WmcrnVIYNhNlT\nRnZjMn9IkT7hZvAusjPSjYTD39jVOjGtEJQERXs4rr3WMZkXkW7qvHR6Jn5PSUh7\nh3qO53iz6MWjlrh4L33ASi/JRSxnlj9yDJd1bNWVj/Ji/Xp1hQAdrNk+7hFlHNq3\nf121OXENtqTkyn65lr3gWDY3cQKBgQC4l0F3yOSOQsqPyaoNXxWgh5m96/NastN+\nbEaXwpTr3tWLbnRNYC/DqQCckeO1SfcpLNrNA+MS3hwgPvRmbomI4zKnHPhyv3Pj\nQIY4yFTgvlkrFIXd+ll+CyfA2s3n/ndHxK3gfm57E+1HYZxHBibQruuqE3CQDquY\nyrpwnuq6VQKBgQCJUaMBmQyc8Elv98mwF2mNfilQx02U5RLqUW0o6dzBWBol3xIx\nIlah3e+XidUj37rgrj0JbzICScWRQKrLUsHSWsbqYOQoQlE127+X9CDmMWssx38r\nIqIvHcVs/k5mMZn4aUNfuduIUTJ0apBFREzp0qx9cUb3OhNMjeaOpLy4cQKBgF6o\n8mHDG7H4fngOKq6AvE5+O1Ex1rIEUoDadbkNh+ENfOTr16h2Uwg7epzQE728GIt8\n/Rd1jtT2IeZHYn3E4bLZD/iy2pW9qGg5hptH4H8AHioBdETJRWtlvRUhH8aAsBqV\nubUOIQnsxhl87O9fMDiD+0ZUgbzeSREppUJrvGOhAoGAOFk/6kyWbfWsrc5bnfH6\nMcqO5TIFDD6ra5awGFBICVs0wqY3XsrGrmsI6HK8BF6eIj2lBud4d9fSrkdImTXy\nyJWWM7875U2ay5TIg5cy/TL3UjIb++B4o5CT5zo33GTn/uDpKxTqwSbcMBU8meiF\nGkC5hUo0i8sU6quv89+Dlbc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "proxy-user@raidsmith.iam.gserviceaccount.com",
+  "client_id": "107244372530233706319",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/proxy-user%40raidsmith.iam.gserviceaccount.com"
+}

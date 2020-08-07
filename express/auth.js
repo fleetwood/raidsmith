@@ -1,5 +1,6 @@
 const { google } = require('googleapis');
-const plus = google.plus('v1');
+const gmail = google.gmail('v1');
+const moment = require('moment');
 const { auth, server } = require('../config');
 const isDev = server.env == 'development';
 let app;
@@ -15,14 +16,16 @@ const getUser = () => new Promise((resolve, reject) => {
     if (app.authUser) {
         resolve(app.authUser);
     }
-    plus.people.get({
-        userId: 'me',
-        auth: oAuth2Client
-    }, function (err, response) {
-        if (err) {
-            reject(err);
+    gmail.users.getProfile({
+            userId: 'me',
+            auth: oAuth2Client
+        }, (err, response) => {
+        try {
+            resolve(response.data);
         }
-        resolve(response);
+        catch(e) {
+            reject(err || e);
+        }
     });
 });
 
@@ -35,6 +38,9 @@ const googleAuth = (req, res, next) => {
         });
         referrer = req.originalUrl;
         res.redirect(url);
+    }
+    else {
+        next();
     }
 }
 
@@ -52,6 +58,7 @@ const googleCallback = (req, res, next) => {
             } else {
                 console.log('Successfully authenticated');
                 oAuth2Client.setCredentials(tokens);
+                console.log(moment(tokens.expiry_date));
                 getUser()
                     .then(user => {
                         app.authUser = user;
