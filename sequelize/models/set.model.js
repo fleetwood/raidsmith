@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { sequelize, Model, DataTypes} = require('./../../db');
+const { sequelize, Model, DataTypes} = require('../../db');
 
 const schema = {
 	name: {

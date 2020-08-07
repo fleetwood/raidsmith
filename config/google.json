@@ -7,12 +7,13 @@
         "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
         "client_secret": "DVpAwlilQNIe9T2R8zlqd7oM",
         "redirect_uris": [
-            "http://localhost:5150/auth/google/callback",
-            "http://localhost:5151/auth/google/callback"
+            "http://localhost:5151/auth/google/callback",
+            "http://raidsmith.com/auth/google/callback"
         ],
         "javascript_origins": [
             "http://localhost:5150",
-            "http://localhost:5151"
+            "http://localhost:5151",
+            "http://raidsmith.com"
         ]
     }
 }

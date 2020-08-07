@@ -5,10 +5,13 @@ const { auth, server } = require('../config');
 const isDev = server.env == 'development';
 let app;
 
+const redirectUri = auth.google.redirect_uris[isDev ? 0 : 1];
+
 const oAuth2Client = new google.auth.OAuth2(
     auth.google.client_id
     , auth.google.client_secret
-    , auth.google.redirect_uris[isDev ? 1 : 0]
+    //TODO: Using wrong port on live server
+    , redirectUri
 );
 var referrer = '/';
 
