@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "setup-db": "node db/setup.js",
-    "bootstrap": "cd _bootstrap && npm run dist && cd ../ && cp -R _bootstrap/dist/. public/"
+    "css": "cd _bootstrap_441 && npm run css && cd ../",
+    "cp-css": "cp -R _bootstrap_441/dist/. public/",
+    "css-dist": "npm run css && npm run cp-css"
   },
   "engines": {
     "node": ">=10"

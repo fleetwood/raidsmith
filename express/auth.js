@@ -1,24 +1,39 @@
+const _ = require('underscore');
+const { models } = require('./../sequelize');
+const Player = models.Player;
 const { google } = require('googleapis');
 const gmail = google.gmail('v1');
-const moment = require('moment');
 const { googleAuth } = require('../config');
+const { OPEN_READWRITE } = require('sqlite3');
 let app;
 var referrer = '/';
 
-const getUser = () => new Promise((resolve, reject) => {
+const authUser = (tokens) => new Promise((resolve, reject) => {
+    //TODO: check for cookie, and use to auth user against database
     if (app.authUser) {
         resolve(app.authUser);
     }
+    if (tokens) {
+        googleAuth.setCredentials(tokens);
+    }
     gmail.users.getProfile({
-            userId: 'me',
-            auth: googleAuth
-        }, (err, response) => {
+        userId: 'me',
+        auth: googleAuth
+    }, (err, response) => {
         try {
-            app.authUser = response.data;
-            resolve(app.authUser);
+            let data = _.extend(response.data, tokens || {});
+            Player.upsert(data)
+                .then(player => {
+                    app.authUser = player[0];
+                    resolve(app.authUser);
+                })
+                .catch(e => {
+                    console.log(`Unable to updateByEmail ${e.message || e}`);
+                    reject(e);
+                })
         }
-        catch(e) {
-            reject(err || e);
+        catch (e) {
+            resolve(null);
         }
     });
 });
@@ -51,9 +66,7 @@ const googleCallback = (req, res, next) => {
                 done();
             } else {
                 console.log('Successfully authenticated');
-                googleAuth.setCredentials(tokens);
-                console.log(moment(tokens.expiry_date));
-                getUser()
+                authUser(tokens)
                     .then(user => {
                         //todo: log user to db, prolly needs a controller
                         app.authUser = user;
@@ -77,6 +90,6 @@ const authInit = (instance) => {
 module.exports = {
     googleAuthenticate
     , googleCallback
-    , getUser
+    , authUser
     , authInit
 }

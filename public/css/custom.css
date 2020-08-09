@@ -1,28 +1,13 @@
-  /**** MEGAMENU ****/
-  @media all and (min-width: 992px) {
-    .navbar{ padding-top: 0; padding-bottom: 0; }
-    .navbar .has-megamenu{position:static!important;}
-    .navbar .megamenu{left:0; right:0; width:100%; padding:20px;  }
-    .navbar .nav-link{ padding-top:1rem; padding-bottom:1rem;  }
-  }
 
-.navbar-toggler {
-  padding:0.25rem 0.75rem;
-  font-size:2rem;
-  line-height:1;
-  background-color:transparent;
-  border:1px solid transparent
+.modal .modal-dialog-aside{
+	width: 350px;
+	max-width:80%; height: 100%; margin:0;
+	transform: translate(0); transition: transform .2s;
 }
-.navbar-toggler:hover,
-.navbar-toggler:focus {
-  text-decoration:none
-}
-.navbar-toggler-icon {
-  display:inline-block;
-  width:1.5em;
-  height:1.5em;
-  vertical-align:middle;
-  content:"^";
-  background:no-repeat center center;
-  background-size:100% 100%
-}
+
+.modal .modal-dialog-aside .modal-content{  height: inherit; border:0; border-radius: 0;}
+.modal .modal-dialog-aside .modal-content .modal-body{ overflow-y: auto }
+.modal.fixed-left .modal-dialog-aside{ margin-left:auto;  transform: translateX(100%); }
+.modal.fixed-right .modal-dialog-aside{ margin-right:auto; transform: translateX(-100%); }
+
+.modal.show .modal-dialog-aside{ transform: translateX(0);  }

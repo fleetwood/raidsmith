@@ -4,6 +4,7 @@ const Artifact = require('./models/Artifact.model')
 	, Attribute = require('./models/Attribute.model')
 	, Character = require('./models/Character.model')
 	, Faction = require('./models/Faction.model')
+	, Player = require('./models/Player.model')
 	, Rarity = require('./models/Rarity.model')
 	, Set = require('./models/Set.model');
 const { associations } = require('./associations');
@@ -13,6 +14,7 @@ Promise.all([
 	Attribute.define(),
 	Character.define(),
 	Faction.define(),
+	Player.define(),
 	Rarity.define(),
 	Set.define()
 ])
