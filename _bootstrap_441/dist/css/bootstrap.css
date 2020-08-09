@@ -10177,4 +10177,49 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+.raid-title {
+  color: #6be9fc;
+}
+
+/****** MENUKIT ********/
+.modal .modal-dialog-aside {
+  width: 350px;
+  max-width: 80%;
+  height: 100%;
+  margin: 0;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+
+.modal .modal-dialog-aside .modal-content {
+  height: inherit;
+  border: 0;
+  border-radius: 0;
+}
+
+.modal .modal-dialog-aside .modal-content .modal-body {
+  overflow-y: auto;
+}
+
+.modal.fixed-left .modal-dialog-aside {
+  margin-left: auto;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.modal.fixed-right .modal-dialog-aside {
+  margin-right: auto;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.modal.show .modal-dialog-aside {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
 /*# sourceMappingURL=bootstrap.css.map */
