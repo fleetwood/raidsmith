@@ -1,1 +1,5 @@
-<h3 class="raid-title">{{{title}}}</h3>
+{{#if authUser}}
+    {{> main}}
+{{else}}
+    {{> marketing}}
+{{/if}}

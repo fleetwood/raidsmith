@@ -14,7 +14,8 @@ const associations = (models) => {
 	Artifact.hasOne(Rarity);
 	Artifact.hasOne(Set);
 	Artifact.belongsTo(Character);
-	Artifact.addToIncludes([Attribute, Rarity, Set, Character]);
+	Artifact.belongsTo(Player);
+	Artifact.addToIncludes([Attribute, Rarity, Set, Character, Player]);
 	console.log(`Associated Artifacts`)
 	
 	
@@ -48,7 +49,8 @@ const associations = (models) => {
 	
 	
 	Player.hasMany(Character);
-	Player.addToIncludes(Character);
+	Player.hasMany(Artifact);
+	Player.addToIncludes([Artifact, Character]);
 	console.log(`Associated Players`)
 	
 	

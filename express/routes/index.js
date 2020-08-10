@@ -25,7 +25,7 @@ const init = (app) => {
         authUser()
             .then(user => {
                 res.render('home', {
-                    layout: 'main'
+                    layout: 'raidsmith'
                     , title: 'RaidSmith'
                     , authUser: app.authUser
                     , isDev: app.isDev

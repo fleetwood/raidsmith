@@ -5496,15 +5496,15 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .list-group-item-action {
   width: 100%;
-  color: #495057;
+  color: #6be9fc;
   text-align: inherit;
 }
 
 .list-group-item-action:hover, .list-group-item-action:focus {
   z-index: 1;
-  color: #495057;
+  color: #6be9fc;
   text-decoration: none;
-  background-color: #f8f9fa;
+  background-color: #173a55;
 }
 
 .list-group-item-action:active {
@@ -5516,8 +5516,9 @@ a.badge-dark:focus, a.badge-dark.focus {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
-  border: 1px solid rgba(6, 15, 21, 0.125);
+  color: #6be9fc;
+  background-color: #1b4562;
+  border: 1px solid rgba(78, 217, 252, 0.125);
 }
 
 .list-group-item:first-child {
@@ -5533,7 +5534,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 .list-group-item.disabled, .list-group-item:disabled {
   color: #6c757d;
   pointer-events: none;
-  background-color: #fff;
+  background-color: #1b4562;
 }
 
 .list-group-item.active {
@@ -10180,6 +10181,113 @@ a.text-dark:hover, a.text-dark:focus {
 
 .raid-title {
   color: #6be9fc;
+}
+
+.raid-border {
+  border: solid 2px #66603e;
+}
+
+.raid-border .empty {
+  border-color: #66603e;
+}
+
+.raid-border .common {
+  border-color: #aeaeae;
+}
+
+.raid-border .uncommon {
+  border-color: #1bcf40;
+}
+
+.raid-border .rare {
+  border-color: #2a97ff;
+}
+
+.raid-border .epic {
+  border-color: #e74aff;
+}
+
+.raid-border .legendary {
+  border-color: #ed8100;
+}
+
+/****** THUMBNAILS ********/
+.th {
+  background-color: #1b4562;
+  height: 50px;
+  width: 50px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: solid 2px #00000000;
+  float: left;
+  margin-right: 1em;
+}
+
+.th.right {
+  float: right;
+  margin-right: 0;
+  margin-left: 1em;
+}
+
+.th.no-float {
+  float: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.th.mini {
+  height: 20px;
+}
+
+.th.character {
+  border-color: #097994;
+  background-image: url(/images/th_character.png);
+}
+
+.th.sets {
+  border-color: #86367d;
+  background-image: url(/images/th_sets.png);
+}
+
+.th.life {
+  background-image: url(/images/sets/th_life.png);
+}
+
+.th.accuracy {
+  background-image: url(/images/sets/th_accuracy.png);
+}
+
+.th.avenging {
+  background-image: url(/images/sets/th_avenging.png);
+}
+
+.th.crit_damage {
+  background-image: url(/images/sets/th_crit_damage.png);
+}
+
+.th.critical_rate {
+  background-image: url(/images/sets/th_critical_rate.png);
+}
+
+.th.cruel {
+  background-image: url(/images/sets/th_cruel.png);
+}
+
+.th.curing {
+  background-image: url(/images/sets/th_curing.png);
+}
+
+.th.cursed {
+  background-image: url(/images/sets/th_cursed.png);
+}
+
+.th.daze {
+  background-image: url(/images/sets/th_daze.png);
+}
+
+.th.defense {
+  background-image: url(/images/sets/th_defense.png);
 }
 
 /****** MENUKIT ********/

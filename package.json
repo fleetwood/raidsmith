@@ -1,6 +1,6 @@
 {
-  "name": "raidsmyth",
-  "version": "0.0.0",
+  "name": "raidsmith",
+  "version": "0.0.1",
   "description": "For building out your RAID characters.",
   "main": "index.js",
   "scripts": {

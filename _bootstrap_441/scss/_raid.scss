@@ -1,6 +1,92 @@
 .raid-title {
   color: $raid-font-teal;
 }
+.raid-border {
+  border: solid 2px $raid-rarity-empty;
+}
+.raid-border .empty {
+  border-color: $raid-rarity-empty;
+}
+.raid-border .common {
+  border-color: $raid-rarity-common;
+}
+.raid-border .uncommon {
+  border-color: $raid-rarity-uncommon;
+}
+.raid-border .rare {
+  border-color: $raid-rarity-rare;
+}
+.raid-border .epic {
+  border-color: $raid-rarity-epic;
+}
+.raid-border .legendary {
+  border-color: $raid-rarity-legendary;
+}
+
+/****** THUMBNAILS ********/
+.th {
+  background-color: $raid-bg-2;
+  height: 50px;
+  width: 50px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: solid 2px #00000000;
+  float:left;
+  margin-right: 1em;
+}
+.th.right {
+  float:right;
+  margin-right: 0;
+  margin-left: 1em;
+}
+.th.no-float {
+  float: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+.th.mini {
+  height: 20px;
+}
+.th.character {
+  border-color: $cyan;
+  background-image: url(/images/th_character.png);
+}
+.th.sets {
+  border-color: $pink;
+  background-image: url(/images/th_sets.png);
+}
+.th.life {
+  background-image: url(/images/sets/th_life.png);
+}
+.th.accuracy {
+  background-image: url(/images/sets/th_accuracy.png);
+}
+.th.avenging {
+     background-image: url(/images/sets/th_avenging.png);
+}
+.th.crit_damage {
+     background-image: url(/images/sets/th_crit_damage.png);
+}
+.th.critical_rate {
+     background-image: url(/images/sets/th_critical_rate.png);
+}
+.th.cruel {
+     background-image: url(/images/sets/th_cruel.png);
+}
+.th.curing {
+     background-image: url(/images/sets/th_curing.png);
+}
+.th.cursed {
+     background-image: url(/images/sets/th_cursed.png);
+}
+.th.daze {
+     background-image: url(/images/sets/th_daze.png);
+}
+.th.defense {
+     background-image: url(/images/sets/th_defense.png);
+}
+
 
 /****** MENUKIT ********/
 .modal .modal-dialog-aside{
