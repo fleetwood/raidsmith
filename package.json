@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "setup-db": "node db/setup.js",
+    "db:reset": "node db/reset.js",
+    "db:seed": "node db/seed.js",
     "css": "cd _bootstrap_441 && npm run css && cd ../",
     "cp-css": "cp -R _bootstrap_441/dist/. public/",
-    "css-dist": "npm run css && npm run cp-css"
+    "css-dist": "npm run css && npm run cp-css",
+    "pkg:db": "cd ./@raid/db && npm update && npm run v && cd ../../",
+    "pkg:model": "npm run pkg:db && cd ./@raid/model && npm update && npm run v && cd ../../",
+    "pkg:all": "npm run pkg:db && npm run pkg:model && npm update"
   },
   "engines": {
     "node": ">=10"
@@ -16,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
+    "@raid/model": "file:@raid/model",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.12",
     "dotenv": "^8.2.0",

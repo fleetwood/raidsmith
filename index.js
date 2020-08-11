@@ -1,6 +1,6 @@
 const { server } = require('./config');
-const app = require('./express/app');
-const { sequelize } = require('./sequelize');
+const app = require('./app');
+const { sequelize } = require('@raid/model');
 
 async function assertDatabaseConnectionOk() {
 	console.log(`Checking database connection...`);
@@ -8,8 +8,8 @@ async function assertDatabaseConnectionOk() {
 		await sequelize.authenticate();
 		console.log('Database connection OK!');
 	} catch (error) {
-		console.log('Unable to connect to the database:');
-		console.log(error.message);
+		console.error(`\tERROR! Unable to connect to the database:`);
+		console.error(`\t${error.message}`);
 		// process.exit(1);
 	}
 }

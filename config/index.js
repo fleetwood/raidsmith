@@ -1,6 +1,4 @@
 require('dotenv').config();
-const os = require('os');
-const utils = require('./../utils');
 const { google } = require('googleapis');
 const googleConfig = require('./google.json');
 
