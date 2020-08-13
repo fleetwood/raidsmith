@@ -7,9 +7,9 @@
           </button>
           <div class="collapse navbar-collapse" id="main_nav1">
             <ul class="navbar-nav">
-              {{#if authUser}}
+              {{#if player}}
               <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#modal_aside_right" href="#">{{authUser.emailAddress}}</a>
+                <a class="nav-link" data-toggle="modal" data-target="#modal_aside_right" href="#">{{player.emailAddress}}</a>
               </li>
               {{else}}
               <li class="nav-item">

@@ -14,7 +14,7 @@ const pg = {
     , db: process.env.DB_NAME
     , login: process.env.DB_LOGIN
     , secret: process.env.DB_SECRET
-    , logQuery: process.env.DB_LOG_QUERY
+    , logging: process.env.DB_LOG_QUERY == 'true'
 }
 
 const googleAuth = new google.auth.OAuth2(

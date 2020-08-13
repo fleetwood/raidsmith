@@ -1,6 +1,6 @@
 const glob = require('glob');
 const Router = require('express').Router;
-const { authInit, googleAuthenticate } = require('./auth');
+const auth = require('@raid/auth');
 
 const apiRoutes = {
 	attributes: require('./api/attributes')
@@ -23,41 +23,42 @@ const asyncErrorHandler = (handler) => {
 }
 
 const init = (app) => {
-    authInit(app);
+    auth.init(app);
+    const authenticate = auth.authenticate;
 
     for (const [route, controller] of Object.entries(apiRoutes)) {
         if (controller.getAll) {
             app.get(
                 `/api/${route}`,
-                (req, res, next) => googleAuthenticate(req, res, next),
+                (req, res, next) => authenticate(req, res, next),
                 asyncErrorHandler(controller.getAll)
             );
         }
         if (controller.getById) {
             app.get(
                 `/api/${route}/:id`,
-                (req, res, next) => googleAuthenticate(req, res, next),
+                (req, res, next) => authenticate(req, res, next),
                 asyncErrorHandler(controller.getById)
             );
         }
         if (controller.create) {
             app.post(
                 `/api/${route}`,
-                (req, res, next) => googleAuthenticate(req, res, next),
+                (req, res, next) => authenticate(req, res, next),
                 asyncErrorHandler(controller.create)
             );
         }
         if (controller.update) {
             app.put(
                 `/api/${route}/:id`,
-                (req, res, next) => googleAuthenticate(req, res, next),
+                (req, res, next) => authenticate(req, res, next),
                 asyncErrorHandler(controller.update)
             );
         }
         if (controller.remove) {
             app.delete(
                 `/api/${route}/:id`,
-                (req, res, next) => googleAuthenticate(req, res, next),
+                (req, res, next) => authenticate(req, res, next),
                 asyncErrorHandler(controller.remove)
             );
         }

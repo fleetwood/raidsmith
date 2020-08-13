@@ -10,9 +10,10 @@
     "css": "cd _bootstrap_441 && npm run css && cd ../",
     "cp-css": "cp -R _bootstrap_441/dist/. public/",
     "css-dist": "npm run css && npm run cp-css",
+    "pkg:auth": "cd ./@raid/auth && npm update && npm run v && cd ../../",
     "pkg:db": "cd ./@raid/db && npm update && npm run v && cd ../../",
     "pkg:model": "npm run pkg:db && cd ./@raid/model && npm update && npm run v && cd ../../",
-    "pkg:all": "npm run pkg:db && npm run pkg:model && npm update"
+    "pkg:all": "npm run pkg:auth && run pkg:db && npm run pkg:model && npm update"
   },
   "engines": {
     "node": ">=10"
@@ -20,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
+    "@raid/auth": "file:@raid/auth",
     "@raid/model": "file:@raid/model",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.12",

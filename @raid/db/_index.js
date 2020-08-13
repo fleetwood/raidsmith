@@ -8,7 +8,7 @@ const init = (config) => {
         , {
             host: config.host
             , dialect: 'postgres'
-            , logQueryParameters: config.logQuery
+            , logging: config.logging
             , benchmark: true
     });
     return {
