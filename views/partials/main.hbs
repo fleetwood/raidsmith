@@ -1,7 +1,7 @@
 <div class="row col-12 flex">
   <div class="col-3">
     <div id="sidebar-wrapper">
-      <div class="sidebar-heading">{{player.emailAddress}}</div>
+      &nbsp;
       <div class="list-group list-group-flush">
         <a href="/ui/character/create" class="list-group-item list-group-item-action"><i class="th character"></i>Characters</a>
         <a href="#" class="list-group-item list-group-item-action"><i class="th accuracy"></i>Artifacts</a>
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="col-8">
+  <div class="col-5">
     <div class="list-group list-group-flush">
       {{#each player.Characters}}
       {{name}}
@@ -22,4 +22,9 @@
       {{/each}}
     </div>
   </div>
+
+  <div class="col-3">
+    {{> bg/randomChar class="bg" }}
+  </div>
+
 </div>

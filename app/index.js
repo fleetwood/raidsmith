@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
-const helpers = require('../views/scripts/helpers');
+const helpers = require('./helpers');
 const routes = require('./routes');
 
 // use express-handlebars view engine and set views template directory

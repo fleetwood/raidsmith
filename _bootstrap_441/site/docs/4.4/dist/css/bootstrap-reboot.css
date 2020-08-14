@@ -5,6 +5,177 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
  */
+.raid-title {
+  color: #6be9fc;
+}
+
+/****** LEFT SIDEBAR ********/
+#sidebar-wrapper {
+  left: 0;
+  position: fixed;
+  font-size: 125%;
+}
+
+/****** BORDERS ********/
+.raid-border {
+  border: solid 2px #66603e;
+}
+
+.raid-border .empty {
+  border-color: #66603e;
+}
+
+.raid-border .common {
+  border-color: #aeaeae;
+}
+
+.raid-border .uncommon {
+  border-color: #1bcf40;
+}
+
+.raid-border .rare {
+  border-color: #2a97ff;
+}
+
+.raid-border .epic {
+  border-color: #e74aff;
+}
+
+.raid-border .legendary {
+  border-color: #ed8100;
+}
+
+/****** THUMBNAILS ********/
+.bg {
+  opacity: 0.3;
+  -webkit-transition: all ease-out 0.5s;
+  transition: all ease-out 0.5s;
+}
+
+.bg:hover {
+  opacity: 1;
+}
+
+/****** THUMBNAILS ********/
+.th {
+  background-color: #1b4562;
+  height: 50px;
+  width: 50px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: solid 2px #00000000;
+  float: left;
+  margin-right: 1em;
+}
+
+.th.right {
+  float: right;
+  margin-right: 0;
+  margin-left: 1em;
+}
+
+.th.no-float {
+  float: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.th.mini {
+  height: 20px;
+}
+
+.th.character {
+  border-color: #11c8e3;
+  background-image: url(/images/th_character.png);
+}
+
+.th.sets {
+  border-color: #86367d;
+  background-image: url(/images/th_sets.png);
+}
+
+.th.life {
+  background-image: url(/images/sets/th_life.png);
+}
+
+.th.accuracy {
+  background-image: url(/images/sets/th_accuracy.png);
+}
+
+.th.avenging {
+  background-image: url(/images/sets/th_avenging.png);
+}
+
+.th.crit_damage {
+  background-image: url(/images/sets/th_crit_damage.png);
+}
+
+.th.critical_rate {
+  background-image: url(/images/sets/th_critical_rate.png);
+}
+
+.th.cruel {
+  background-image: url(/images/sets/th_cruel.png);
+}
+
+.th.curing {
+  background-image: url(/images/sets/th_curing.png);
+}
+
+.th.cursed {
+  background-image: url(/images/sets/th_cursed.png);
+}
+
+.th.daze {
+  background-image: url(/images/sets/th_daze.png);
+}
+
+.th.defense {
+  background-image: url(/images/sets/th_defense.png);
+}
+
+/****** MENUKIT ********/
+.modal .modal-dialog-aside {
+  width: 350px;
+  max-width: 80%;
+  height: 100%;
+  margin: 0;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+
+.modal .modal-dialog-aside .modal-content {
+  height: inherit;
+  border: 0;
+  border-radius: 0;
+}
+
+.modal .modal-dialog-aside .modal-content .modal-body {
+  overflow-y: auto;
+}
+
+.modal.fixed-left .modal-dialog-aside {
+  margin-left: auto;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.modal.fixed-right .modal-dialog-aside {
+  margin-right: auto;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.modal.show .modal-dialog-aside {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
 *,
 *::before,
 *::after {

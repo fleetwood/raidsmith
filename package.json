@@ -9,7 +9,7 @@
     "db:seed": "node db/seed.js",
     "css": "cd _bootstrap_441 && npm run css && cd ../",
     "cp-css": "cp -R _bootstrap_441/dist/. public/",
-    "css-dist": "npm run css && npm run cp-css",
+    "pkg:css": "npm run css && npm run cp-css",
     "pkg:auth": "cd ./@raid/auth && npm update && npm run v && cd ../../",
     "pkg:db": "cd ./@raid/db && npm update && npm run v && cd ../../",
     "pkg:model": "npm run pkg:db && cd ./@raid/model && npm update && npm run v && cd ../../",
