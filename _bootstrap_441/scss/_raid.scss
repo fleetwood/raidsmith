@@ -49,27 +49,49 @@ $raid-list-group-border-radius: 40px;
   position: fixed;
   font-size: 125%;
 }
+/****** backgrounds ********/
+.raid-bg-1 {
+  background-color: $raid-bg-1;
+}
+.raid-bg-2 {
+  background-color: $raid-bg-2;
+}
+.raid-bg-3 {
+  background-color: $raid-bg-3;
+}
+.raid-bg-4 {
+  background-color: $raid-bg-4;
+}
+.raid-bg-5 {
+  background-color: $raid-bg-5;
+}
+.raid-bg-main {
+  background-color: $raid-main-bg;
+}
+.raid-bg-dark {
+  background-color: $raid-dark-bg;
+}
 
 /****** BORDERS ********/
 .raid-border {
   border: solid 2px $raid-rarity-empty;
 }
-.raid-border .empty {
+.raid-border.empty {
   border-color: $raid-rarity-empty;
 }
-.raid-border .common {
+.raid-border.common {
   border-color: $raid-rarity-common;
 }
-.raid-border .uncommon {
+.raid-border.uncommon {
   border-color: $raid-rarity-uncommon;
 }
-.raid-border .rare {
+.raid-border.rare {
   border-color: $raid-rarity-rare;
 }
-.raid-border .epic {
+.raid-border.epic {
   border-color: $raid-rarity-epic;
 }
-.raid-border .legendary {
+.raid-border.legendary {
   border-color: $raid-rarity-legendary;
 }
 

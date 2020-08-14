@@ -4,6 +4,7 @@
   "description": "For building out your RAID characters.",
   "main": "index.js",
   "scripts": {
+    "git:cmt": "git add . && git commit -a -m",
     "start": "node index.js",
     "db:reset": "node db/reset.js",
     "db:seed": "node db/seed.js",

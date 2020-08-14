@@ -235,7 +235,7 @@ $grid-row-columns:            6 !default;
 $line-height-lg:              1.5 !default;
 $line-height-sm:              1.5 !default;
 
-$border-width:                $raid-border-width !default;
+$border-width:                2px !default;
 $border-color:                $gray-300 !default;
 
 $border-radius:               .25rem !default;
@@ -829,13 +829,13 @@ $card-spacer-y:                     .75rem !default;
 $card-spacer-x:                     1.25rem !default;
 $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius !default;
-$card-border-color:                 rgba($black, .125) !default;
+$card-border-color:                 $raid-border-teal1 !default;
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
-$card-cap-bg:                       rgba($black, .03) !default;
-$card-cap-color:                    null !default;
+$card-cap-bg:                       $raid-bg-2 !default;
+$card-cap-color:                    $raid-font-beige !default;
 $card-height:                       null !default;
-$card-color:                        null !default;
-$card-bg:                           $white !default;
+$card-color:                        $raid-font-cream !default;
+$card-bg:                           $raid-bg-1 !default;
 
 $card-img-overlay-padding:          1.25rem !default;
 

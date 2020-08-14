@@ -15,32 +15,61 @@
   font-size: 125%;
 }
 
+/****** backgrounds ********/
+.raid-bg-1 {
+  background-color: #114f6d;
+}
+
+.raid-bg-2 {
+  background-color: #1b4562;
+}
+
+.raid-bg-3 {
+  background-color: #173a55;
+}
+
+.raid-bg-4 {
+  background-color: #102b43;
+}
+
+.raid-bg-5 {
+  background-color: #112b37;
+}
+
+.raid-bg-main {
+  background-color: #1c666a;
+}
+
+.raid-bg-dark {
+  background-color: #092a2f;
+}
+
 /****** BORDERS ********/
 .raid-border {
   border: solid 2px #66603e;
 }
 
-.raid-border .empty {
+.raid-border.empty {
   border-color: #66603e;
 }
 
-.raid-border .common {
+.raid-border.common {
   border-color: #aeaeae;
 }
 
-.raid-border .uncommon {
+.raid-border.uncommon {
   border-color: #1bcf40;
 }
 
-.raid-border .rare {
+.raid-border.rare {
   border-color: #2a97ff;
 }
 
-.raid-border .epic {
+.raid-border.epic {
   border-color: #e74aff;
 }
 
-.raid-border .legendary {
+.raid-border.legendary {
   border-color: #ed8100;
 }
 
@@ -4905,9 +4934,9 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #114f6d;
   background-clip: border-box;
-  border: 2px solid rgba(6, 15, 21, 0.125);
+  border: 2px solid #4ed9fc;
   border-radius: 0.25rem;
 }
 
@@ -4931,6 +4960,7 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+  color: #e7e3d1;
 }
 
 .card-title {
@@ -4957,8 +4987,9 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(6, 15, 21, 0.03);
-  border-bottom: 2px solid rgba(6, 15, 21, 0.125);
+  color: #adab5b;
+  background-color: #1b4562;
+  border-bottom: 2px solid #4ed9fc;
 }
 
 .card-header:first-child {
@@ -4971,8 +5002,8 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(6, 15, 21, 0.03);
-  border-top: 2px solid rgba(6, 15, 21, 0.125);
+  background-color: #1b4562;
+  border-top: 2px solid #4ed9fc;
 }
 
 .card-footer:last-child {

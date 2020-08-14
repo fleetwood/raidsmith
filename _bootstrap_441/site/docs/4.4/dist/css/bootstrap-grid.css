@@ -26,32 +26,61 @@ html {
   font-size: 125%;
 }
 
+/****** backgrounds ********/
+.raid-bg-1 {
+  background-color: #114f6d;
+}
+
+.raid-bg-2 {
+  background-color: #1b4562;
+}
+
+.raid-bg-3 {
+  background-color: #173a55;
+}
+
+.raid-bg-4 {
+  background-color: #102b43;
+}
+
+.raid-bg-5 {
+  background-color: #112b37;
+}
+
+.raid-bg-main {
+  background-color: #1c666a;
+}
+
+.raid-bg-dark {
+  background-color: #092a2f;
+}
+
 /****** BORDERS ********/
 .raid-border {
   border: solid 2px #66603e;
 }
 
-.raid-border .empty {
+.raid-border.empty {
   border-color: #66603e;
 }
 
-.raid-border .common {
+.raid-border.common {
   border-color: #aeaeae;
 }
 
-.raid-border .uncommon {
+.raid-border.uncommon {
   border-color: #1bcf40;
 }
 
-.raid-border .rare {
+.raid-border.rare {
   border-color: #2a97ff;
 }
 
-.raid-border .epic {
+.raid-border.epic {
   border-color: #e74aff;
 }
 
-.raid-border .legendary {
+.raid-border.legendary {
   border-color: #ed8100;
 }
 
