@@ -10,6 +10,9 @@ const init = (config) => {
             , dialect: 'postgres'
             , logging: config.logging
             , benchmark: true
+            , define: {
+                timestamps: config.timestamps
+            }
     });
     return {
         Sequelize,

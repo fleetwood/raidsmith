@@ -8,13 +8,16 @@ const server = {
     , env: process.env.env || 'stage'
 }
 
+const presentAndTrue = (val) => val && val == 'true'
+
 const pg = {
     host: process.env.DB_HOST
     , port: process.env.DB_PORT
     , db: process.env.DB_NAME
     , login: process.env.DB_LOGIN
     , secret: process.env.DB_SECRET
-    , logging: process.env.DB_LOG_QUERY == 'true'
+    , logging: presentAndTrue(process.env.DB_LOG_QUERY)
+    , timestamps: presentAndTrue(process.env.DB_TIMESTAMPS)
 }
 
 const googleAuth = new google.auth.OAuth2(

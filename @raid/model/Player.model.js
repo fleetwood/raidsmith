@@ -35,11 +35,18 @@ const schema = {
 };
 
 class Player extends Model {}
-Player.define = () => Player.init(schema, {sequelize});
+Player.init(schema, {sequelize}, { timestamps: false });
 
 Player.findAllEager = (where) => Player.findAll(_.extend({ include: [{ all: true }]}, where));
 Player.findOneEager = (where) => Player.findOne(_.extend({ include: [{ all: true }]}, where));
 Player.findByEmail = (emailAddress) => Player.findOneEager({where: {emailAddress}});
+
+Player.associate = (models) => {
+	Player.hasMany(models.Character);
+	Player.hasMany(models.Artifact);
+	console.log('Associated Players!')
+}
+
 // Player.upsertByEmail = (values) => new Promise((resolve, reject) => {
 //     Player.findOne({where: {emailAddress: values.emailAddress}})
 //         .then(player => {

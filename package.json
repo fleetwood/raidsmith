@@ -6,8 +6,8 @@
   "scripts": {
     "git:cmt": "git add . && git commit -a -m",
     "start": "node index.js",
-    "db:reset": "node db/reset.js",
-    "db:seed": "node db/seed.js",
+    "db:reset": "DB_LOG_QUERY=true && node db/reset.js",
+    "db:seed": "DB_LOG_QUERY=true && node db/seed.js",
     "css": "cd _bootstrap_441 && npm run css && cd ../",
     "cp-css": "cp -R _bootstrap_441/dist/. public/",
     "pkg:css": "npm run css && npm run cp-css",
@@ -21,9 +21,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@raid/auth": "file:./@raid/auth",
+    "@raid/model": "file:./@raid/model",
     "@handlebars/allow-prototype-access": "^1.0.3",
-    "@raid/auth": "file:@raid/auth",
-    "@raid/model": "file:@raid/model",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.12",
     "dotenv": "^8.2.0",
@@ -32,9 +32,8 @@
     "googleapis": "^58.0.0",
     "handlebars": "^4.7.6",
     "pg": "^8.3.0",
-    "sequelize": "^6.3.3",
+    "sequelize": "latest",
     "serve-favicon": "^2.5.0",
-    "sqlite3": "^5.0.0",
     "underscore": "^1.10.2",
     "url-parse": "^1.4.7"
   }

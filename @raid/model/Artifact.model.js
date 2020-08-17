@@ -13,34 +13,32 @@ const schema = {
 	, stars: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		default: 1,
+		defaultValue: 1,
 		minValue: 1,
 		maxValue: 6
 	}
 	, level: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		default: 0
+		defaultValue: 0
 	}
 };
 
 class Artifact extends Model { }
-
-Artifact.Types = {
-	WEAPON: 'Weapon'
-	, HELMET: 'Helmet'
-	, SHIELD: 'Shield'
-	, GAUNTLETS: 'Gauntlets'
-	, CHESTPLATE: 'Chestplate'
-	, BOOTS: 'Boots'
-	, RING: 'Ring'
-	, AMULET: 'Amulet'
-	, BANNER: 'Banner'
-}
-
-Artifact.define = () => Artifact.init(schema, { sequelize });
+Artifact.init(schema, { sequelize }, { timestamps: false });
 
 Artifact.findAllEager = (where) => Artifact.findAll(_.extend({ include: [{ all: true }]}, where));
 Artifact.findOneEager = (where) => Artifact.findOne(_.extend({ include: [{ all: true }]}, where));
+
+Artifact.associate = (models) => {
+	Artifact.hasOne(models.Modifier, { 
+		as: 'PrimaryStat'
+	});
+	Artifact.hasMany(models.Modifier, { 
+		as: 'SubStats'
+	});
+	Artifact.belongsTo(models.Set);
+	console.log('Associated Artifacts!');
+}
 
 module.exports = Artifact;

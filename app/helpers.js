@@ -1,6 +1,6 @@
-const eq = (x,y) => x == y;
+const eq = (x, y) => x == y;
 
-const notEq = (x,y) => !eq(x,y);
+const notEq = (x, y) => !eq(x, y);
 
 const isArray = (array) => Array.isArray(array);
 
@@ -18,7 +18,11 @@ const padRandNum = (x, y, pad) => padNum(randNum(x, y), pad);
 
 const randBG = (theme, range) => `/images/bg/${theme}_${padRandNum(1, range, 2)}.png`;
 
-const wp = (img = -1) => `/images/bg/wp_${(img > -1) ? padNum(img, 2) : padNum(randNum(0,4), 2)}.png`;
+const bg = (th, img = -1) => `/images/bg/${th}_${(img > -1) ? padNum(img, 2) : padNum(randNum(0, 4), 2)}.png`;
+
+const wp = (img = -1) => bg('wp', img);
+
+const ch = (img = -1) => bg('ch', img);
 
 const propsToString = (obj) => {
 	let result = '';
@@ -49,6 +53,7 @@ const helpers = () => {
 		, padRandNum
 		, randNum
 		, randBG
+		, ch
 		, wp
 		, propsToString
 		, isString

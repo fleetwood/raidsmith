@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@raid/db": "file:../db"
+    "@raid/db": "file:../db",
+    "sequelize": "latest"
   }
 }

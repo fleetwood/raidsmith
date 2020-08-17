@@ -1,11 +1,11 @@
-const { sequelize } = require('@raid/model');
+const model = require('@raid/model');
 
 async function reset() {
-	console.log('Will rewrite the database.');
-
-	await sequelize.sync({ force: true });
-
-	console.log('Done!');
+	console.log('Rebuilding the database!');
+	
+	model.reset()
+		.then(console.log('SUCCESS!'))
+		.catch(e => console.log(`ERRORRRRRR: ${e.message || e}`));
 }
 
 reset();

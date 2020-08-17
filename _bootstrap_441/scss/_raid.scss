@@ -71,6 +71,19 @@ $raid-list-group-border-radius: 40px;
 .raid-bg-dark {
   background-color: $raid-dark-bg;
 }
+.wp {
+  background-image: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
 
 /****** BORDERS ********/
 .raid-border {
@@ -171,7 +184,7 @@ $raid-list-group-border-radius: 40px;
 
 /****** MENUKIT ********/
 .modal .modal-dialog-aside{
-	width: 350px;
+	width: 40%;
 	max-width:80%; height: 100%; margin:0;
 	transform: translate(0); transition: transform .2s;
 }
