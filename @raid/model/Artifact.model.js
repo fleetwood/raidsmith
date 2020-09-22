@@ -37,8 +37,7 @@ Artifact.associate = (models) => {
 	Artifact.hasMany(models.Modifier, { 
 		as: 'SubStats'
 	});
-	Artifact.belongsTo(models.Set);
-	console.log('Associated Artifacts!');
+	console.log('Associated Artifacts to Modifers (n:1, n:m)!');
 }
 
 module.exports = Artifact;

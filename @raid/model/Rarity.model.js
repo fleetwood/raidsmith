@@ -22,7 +22,7 @@ Rarity.associate = (models) => {
 	Rarity.belongsToMany(models.Artifact, {
 		through: 'ArtifactRarities'
 	});
-	console.log('No associations needed for Rarities...');
+	console.log('Associated Rarities to Character and Artifact...');
 }
 
 /**

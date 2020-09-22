@@ -1,4 +1,6 @@
-const { Labels, Set, Modifier } = require('@raid/model');
+const _ = require('underscore');
+const { Labels, Set } = require('@raid/model');
+
 let LifeSet
     , OffenseSet
     , DefenseSet
@@ -14,43 +16,40 @@ let LifeSet
     , FrostSet
     , FrenzySet
 ;
-
-let sets = [
-    LifeSet
-    , OffenseSet
-    , DefenseSet
-    , SpeedSet
-    , CriticalRateSet
-    , CritDamageSet
-    , AccuracySet
-    , ResistanceSet
-    , LifestealSet
-    , FurySet
-    , DazeSet
-    , CursedSet
-    , FrostSet
-    , FrenzySet
-];
-
-const seed = () => new Promise((resolve, reject) => {
+const seed = (seeds) => new Promise((resolve, reject) => {
    console.log('\tSeeding Sets...');
+   seeds.sets = {}
     Promise.all([
-        Set.createOrUpdate({
+        Set.upsert({
             name: 'Life'
             , description: '+15% HP'
             , requirement: 2
             , icon: ''
-            , modifier: {
-                description: '+15% HP'
-                , attribute: Labels.Attributes.HP
-                , method: Labels.Methods.PERC
-                , value: 15
-            }
+        })
+        , Set.upsert({
+            name: 'Offense'
+            , description: '+15% ATK'
+            , requirement: 2
+            , icon: ''
         })
     ])
     .then((results) => {
-        console.log('\tSets seeded!');
-        resolve();
+        results.forEach(r => {
+            let set = r[0];
+            seeds.sets[set.name] = set;
+        });
+        let updateModifers = [];
+
+        seeds.sets.Life.setModifier(seeds.modifiers.LifeSet);
+        updateModifers.push(seeds.sets.Life.update());
+
+        seeds.sets.Offense.setModifier(seeds.modifiers.OffenseSet);
+        updateModifers.push(seeds.sets.Offense.update());
+
+        Promise.all(updateModifers)
+            .then((results) => {
+                resolve(seeds);
+            });
     })
     .catch(e => {
         console.log(`\tERROR: Sets failed to seed. ${e.message || e}`);
@@ -59,8 +58,7 @@ const seed = () => new Promise((resolve, reject) => {
 });
 
 module.exports = {
-    sets
-    , seed
+    seed
 }
 
 // OffenseSet = Set.upsert({

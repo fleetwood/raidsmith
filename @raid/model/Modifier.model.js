@@ -5,7 +5,12 @@ const { Model, DataTypes, sequelize } = require('./_db');
  * schema
  */
 const schema = {
-	description: {
+	alias: {
+		allowNull: false,
+		type: DataTypes.STRING,
+		defaultValue: ''
+	}
+	, description: {
 		allowNull: false,
 		type: DataTypes.STRING,
 		defaultValue: ''
@@ -37,28 +42,26 @@ Modifier.findAllEager = (where) => Modifier.findAll(_.extend({ include: [{ all: 
 Modifier.findOneEager = (where) => Modifier.findOne(_.extend({ include: [{ all: true }] }, where));
 
 Modifier.associate = (models) => {
-	Modifier.belongsTo(models.Artifact);
-	Modifier.belongsTo(models.Set);
-	console.log('Associated Modifiers!');
+	console.log('No associations needed for Modifiers!');
 }
 
 /**
- * 
- * ```js
- * params: {
- * 	id?: `[PK]`INT,
- * 	description: STRING,
- * 	attribute?: STRING, // Labels.Attributes
- * 	method?: STRING, // Labels.Methods
- * 	value?: STRING, // Labels.Methods
- * }
- * ```
  * @param {Int?} id `[PK]` Leave empty to create a new {@link Modifier}.
  * @param {String} description What the modifier does. Useful for passive modifiers.
  * @param {String?} attribute The attribute affected by the modifier. See `{@link _index#Labels.Attributes}`. Nullable if passive.
  * @param {String?} method How the attribute is modified. Acceptables values (`{@link _index#Labels.Methods}`) `Percent`, `Plus`, `Passive`
  * @param {Int?} value The amount by which the base attribute is modified.
  * @returns The {@link Set} from the db.
+ * 
+ * ```js
+ * params: {
+ *	id?: `[PK]`INT,
+ *	description: STRING,
+ *	attribute?: STRING, // Labels.Attributes
+ *	method?: STRING, // Labels.Methods
+ *	value?: INT
+ * }
+ * ```
  */
 Modifier.createOrUpdate = (params) => new Promise((resolve, reject) => {
 	Modifier.upsert(params)

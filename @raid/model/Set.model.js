@@ -1,7 +1,5 @@
 const _ = require('underscore');
 const { Model, DataTypes, sequelize } = require('./_db');
-const Modifier = require('./Modifier.model');
-const { models } = require('./_index');
 
 const schema = {
 	name: {
@@ -35,8 +33,8 @@ Set.associate = (models) => {
 	Set.belongsToMany(models.Artifact, {
 		through: 'SetArtifacts'
 	});
-	Set.hasOne(models.Modifier, { as: 'modifier', foreignKey: 'id'});
-	console.log('Associated Sets!');
+	Set.hasOne(models.Modifier, { as: 'SetModifier' })
+	console.log('Associated Sets to Artifact and Modifer!');
 }
 
 /**

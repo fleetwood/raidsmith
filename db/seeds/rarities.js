@@ -1,4 +1,5 @@
 const { Labels, Rarity } = require('@raid/model');
+const { result } = require('underscore');
 
 let COMMON = Labels.Rarity.COMMON
     , UNCOMMON = Labels.Rarity.UNCOMMON
@@ -9,14 +10,19 @@ let rarities = [
     COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
 ];
 
-const seed = () => new Promise((resolve, reject) => {
+const seed = (seeds) => new Promise((resolve, reject) => {
     console.log('\tSeeding Rarities...');
+    seeds.rarities = {};
     
     Promise.all(
-        rarities.map(f => Rarity.createOrUpdate({ name: f }))
+        rarities.map(r => Rarity.createOrUpdate({ name: r }))
     )
     .then((results) => {
-        console.log('\tRarities seeded!');
+        results.forEach(r => {
+            let rarity = Rarity.build(r.dataValues);
+            seeds.rarities[rarity.name] = rarity;
+        });
+        console.log(`\t[${results.length}] Rarities seeded!`);
         resolve();
     })
     .catch(e => {

@@ -1,7 +1,7 @@
 const _ = require('underscore');
 const { Faction } = require('@raid/model');
 
-let seeds = [
+let factions = [
     'Lizardmen'
     , 'Skinwalker'
     , 'Knight Revenant'
@@ -17,15 +17,19 @@ let seeds = [
     , 'Dwarf'
 ];
 
-const seed = () => new Promise((resolve, reject) => {
+const seed = (seeds) => new Promise((resolve, reject) => {
     console.log('\tSeeding factions...');
-    
+    seeds.factions = {};
     Promise.all(
-        seeds.map(f => Faction.createOrUpdate({ name: f }).then(result => f = result))
+        factions.map(f => Faction.createOrUpdate({ name: f }).then(result => f = result))
     )
     .then((results) => {
-        console.log('\tFactions seeded!');
-        resolve();
+        results.forEach(r => {
+            let faction = Faction.build(r.dataValues);
+            seeds.factions[faction.name.replace(' ','')] = faction;
+        });
+        console.log(`\t[${results.length}] Factions seeded!`);
+        resolve(seeds);
     })
     .catch(e => {
         console.log(`\tFailed seeding Factions: ${e.message || e}`);

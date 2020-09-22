@@ -12,7 +12,7 @@ let affinities = [
     , VOID
 ];
 
-const seed = () => new Promise((resolve, reject) => {
+const seed = (seeds) => new Promise((resolve, reject) => {
     console.log(`\tSeeding Affinities...`)
     Promise.all([
         Affinity.createOrUpdate({name: Labels.Affinities.MAGIC})
@@ -21,12 +21,14 @@ const seed = () => new Promise((resolve, reject) => {
         , Affinity.createOrUpdate({name: Labels.Affinities.VOID})
     ])
     .then((m) => {
-        MAGIC = m[0];
-        FORCE = m[1];
-        SPIRIT = m[2];
-        VOID = m[3];
-        console.log(`\tAffinities seeded!`);
-        resolve();
+        seeds.affinities = {
+            MAGIC: m[0]
+            , FORCE: m[1]
+            , SPIRIT: m[2]
+            , VOID: m[3]
+        };
+        console.log(`\t[${m.length}] Affinities seeded!`);
+        resolve(seeds);
     })
     .catch(e => {
         console.log(`\tERROR: Affinities failed to seed: ${e.message || e}`);

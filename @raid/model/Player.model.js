@@ -44,7 +44,7 @@ Player.findByEmail = (emailAddress) => Player.findOneEager({where: {emailAddress
 Player.associate = (models) => {
 	Player.hasMany(models.Character);
 	Player.hasMany(models.Artifact);
-	console.log('Associated Players!')
+	console.log('Associated Players to Character and Artifact!')
 }
 
 // Player.upsertByEmail = (values) => new Promise((resolve, reject) => {
