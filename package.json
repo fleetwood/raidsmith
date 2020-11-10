@@ -1,40 +1,62 @@
 {
-  "name": "raidsmith",
-  "version": "0.0.1",
-  "description": "For building out your RAID characters.",
-  "main": "index.js",
-  "scripts": {
-    "git:cmt": "git add . && git commit -a -m",
-    "start": "node index.js",
-    "db:reset": "DB_LOG_QUERY=true && node db/reset.js",
-    "db:seed": "DB_LOG_QUERY=true && node db/seed.js",
-    "css": "cd _bootstrap_441 && npm run css && cd ../",
-    "cp-css": "cp -R _bootstrap_441/dist/. public/",
-    "pkg:css": "npm run css && npm run cp-css",
-    "pkg:auth": "cd ./@raid/auth && npm update && npm run v && cd ../../",
-    "pkg:db": "cd ./@raid/db && npm update && npm run v && cd ../../",
-    "pkg:model": "npm run pkg:db && cd ./@raid/model && npm update && npm run v && cd ../../",
-    "pkg:all": "npm run pkg:auth && run pkg:db && npm run pkg:model && npm update"
-  },
-  "engines": {
-    "node": ">=10"
-  },
-  "license": "MIT",
+  "name": "material-kit-react",
+  "version": "1.9.0",
+  "description": "Material Kit React. Coded by Creative Tim",
+  "private": true,
+  "main": "src/index.js",
   "dependencies": {
-    "@raid/auth": "file:./@raid/auth",
-    "@raid/model": "file:./@raid/model",
-    "@handlebars/allow-prototype-access": "^1.0.3",
-    "body-parser": "^1.19.0",
-    "browser-sync": "^2.26.12",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.1.0",
-    "googleapis": "^58.0.0",
-    "handlebars": "^4.7.6",
-    "pg": "^8.3.0",
-    "sequelize": "latest",
-    "serve-favicon": "^2.5.0",
-    "underscore": "^1.10.2",
-    "url-parse": "^1.4.7"
+    "@material-ui/core": "4.10.0",
+    "@material-ui/icons": "4.9.1",
+    "classnames": "2.2.6",
+    "history": "4.10.1",
+    "moment": "2.26.0",
+    "node-sass": "4.14.1",
+    "nouislider": "14.5.0",
+    "prop-types": "15.7.2",
+    "react": "16.13.1",
+    "react-datetime": "2.16.3",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "3.4.1",
+    "react-slick": "0.26.1",
+    "react-swipeable-views": "0.13.9",
+    "tinycolor2": "^1.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.10.1",
+    "@babel/plugin-proposal-class-properties": "7.10.1",
+    "@babel/preset-env": "7.10.1",
+    "@babel/preset-react": "7.10.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-react": "7.20.0",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8",
+    "prettier": "2.0.5"
+  },
+  "optionalDependencies": {
+    "typescript": "3.9.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && gulp licenses",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "build-package-css": "node-sass src/assets/scss/material-kit-react.scss dist/material-kit-react.css",
+    "build-package": "npm run build-package-css && babel src --out-dir dist",
+    "compile-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.css",
+    "minify-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.css --source-map true"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": []
   }
 }

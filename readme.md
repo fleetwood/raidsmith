@@ -1,35 +1,71 @@
-# Sequelize + Express
+# WHAT THE SITE SHOULD DO
 
-This is an example of how to setup Sequelize and Express together in a project for NodeJS 10 and above.
+### Search for Champions
 
-Feel free to download this and use as a starting point for your new project!
+* By Rarity
+* By Name
+* By Abilities
+* By Comps
 
-This example uses SQLite as a database engine, since it works directly with the filesystem and does not require extra configuration. Feel free to use another database engine - you just have to change the connection URL in the `Sequelize` constructor. [Learn more in the Sequelize docs](https://sequelize.org).
+---
+### Guides and Articles
 
-## See it in action
+* How to Clan Boss
+* Faction Wars
+* Keeps
 
-* Install dependencies with `npm install` or `yarn install`
-* Run the express server with `npm start`
-* Open your browser in `localhost:8000` and try the example REST endpoints:
-	* `localhost:8000/api/users` (GET)
-	* `localhost:8000/api/users/1` (GET)
-	* `localhost:8000/api/users` (POST)
-		* Body format: `{ username: 'john' }`
-	* `localhost:8000/api/users/1` (PUT)
-		* Body format: `{ username: 'john' }`
-	* `localhost:8000/api/users/1` (DELETE)
+---
+### Content Creators
 
-## Exercise: new model and new controller
+* Detail page
+  * Facebook
+  * Twitter
+  * Youtube
+  * Twitch
+* Content feed
 
-Try to create a new model `item.model.js` and a new express route controller `items.js` to handle:
+---
+## Character Data
+- Thumb
+- Rarity
+- Faction
+- Skills
+- Relevant Content
+---
+#### Character Model
+| `property` | *type* | _references_ |
+|-|-|-|
+| `id`| *pk* ||
+| `name`| *string* ||
+| `safename`| *string* ||
+| `thumb`| *string* ||
+| `faction`| *fk*| Faction |
+| `rarity`| *fk*| Rarity |
+| `specialty`| *fk*| Specialty |
+| `skills`| *fk*| Skill |
+| `content`| *fk*| Skill |
+---
 
-* `GET` and `CREATE` in `/api/items`
-* `GET`, `PUT` and `DELETE` in `/api/items/:id`
+#### Faction Model
+| `property` | *type* | _references_ |
+|-|-|-|
+| `id`| *pk*||
+| `name`| *string* ||
+| `icon`| *string* ||
+---
 
-## What about the front-end?
+#### Skill Model
+| `property`|*type*| _references_ |
+|-|-|-|
+| `id`| *pk*||
+| `name`| *string* ||
+| `description`| *string* ||
+| `icon`| *string* ||
+---
 
-This example focuses only on how you will integrate Sequelize with Express in your backend. The choice of a front-end technology stack is left to you!
-
-## License
-
-MIT
+#### Rarity Model
+| `property` | *type* | _references_ |
+|-|-|-|
+| `id`| *pk*||
+| `name`| *string* ||
+---
