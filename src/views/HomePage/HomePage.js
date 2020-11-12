@@ -32,8 +32,9 @@ export default function HomePage(props) {
 
   return (
     <LandingPage
-      title="Landing page"
-      subTitle="This is now using the Landing Page layout."
+      bg="random render"
+      title="Raidsmith"
+      subTitle="The ultimate resource for RAID Shadow Legends."
       >
         <Button onClick={handleInfo} >Test Info Notif</Button>
         <Button onClick={handleSuccess} >Test Success Notif</Button>
