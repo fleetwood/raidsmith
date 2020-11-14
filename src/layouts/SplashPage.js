@@ -11,17 +11,17 @@ import GridItem from "mui/Grid/GridItem.js";
 import Card from "mui/Card/Card.js";
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
-
-import image from "assets/img/bg7.jpg";
+import { BackgroundImage } from "helpers/Backgrounds";
 
 const useStyles = makeStyles(styles);
 
 export default function SplashPage(props) {
-    const { children } = props;
+    const { children, bg } = props;
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function() {
     setCardAnimation("");
   }, 700);
+
   const classes = useStyles();
   return (
     <div>
@@ -34,7 +34,7 @@ export default function SplashPage(props) {
       <div
         className={classes.pageHeader}
         style={{
-          backgroundImage: "url(" + image + ")",
+          backgroundImage: "url(" + BackgroundImage(bg) + ")",
           backgroundSize: "cover",
           backgroundPosition: "top center"
         }}

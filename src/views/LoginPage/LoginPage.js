@@ -23,7 +23,7 @@ export default function LoginPage(props) {
   const classes = useStyles();
 
   return (
-    <SplashPage>
+    <SplashPage bg='renders/bystophus.jpg'>
       <form className={classes.form}>
         <CardHeader color="primary" className={classes.cardHeader}>
           <h4>Login</h4>
