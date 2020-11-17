@@ -97,21 +97,29 @@ const miniStyles = {
         height: '100%',
     },
     champName: {
-        textShadow: `0px 0px 5px black`,
+        fontSize: '1.1rem',
         fontWeight: 700,
         width: '90%',
-        opacity: 0.8,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        textShadow: `0px 2px 2px black`,
     },
     factionName: {
         textShadow: `2px 3px 2px black`,
         position: 'absolute',
-        bottom: '8px'
+        bottom: '8px',
+        fontWeight: 400,
+    },
+    specialtyName: {
+        textShadow: `2px 3px 2px black`,
+        position: 'absolute',
+        bottom: '28px',
+        fontWeight: 600,
     },
     affinityIcon: {
         position: `absolute`,
-        height: `25px`,
-        left: '3px',
+        width: `30px`,
+        right: '5px',
+        bottom: '5px'
     },
     auraIcon: {
         position: `absolute`,
@@ -148,12 +156,17 @@ const ChampMini = (props) => {
             <div className={classes.content}>
                 <div className={classes.champName}>{champ.name}</div>
                 <div>
-                    <img className={classes.auraIcon} src={ChampIcon(champ.aura.icon)} alt={champ.aura.name} />
+                    <img className={classes.auraIcon} 
+                        src={ChampIcon(champ.aura.icon)} 
+                        alt={champ.aura.name} />
                 </div>
-                <div className={classes.factionName}>{champ.faction.name}</div>
                 <div className={classes.affinityIcon}>
-                    <img className={classes.affinityIcon} src={ChampIcon(champ.affinity.icon)} alt={champ.affinity.name} />
+                    <img className={classes.affinityIcon} 
+                        src={ChampIcon(champ.affinity.icon)} 
+                        alt={champ.affinity.name} />
                 </div>
+                <div className={classes.specialtyName}>{champ.specialty.name}</div>
+                <div className={classes.factionName}>{champ.faction.name}</div>
             </div>
             <img style={{width: '100%'}} src={Thumbnail(champ.thumb)} alt={champ.name} />
         </GridItem>
