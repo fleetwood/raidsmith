@@ -1,9 +1,10 @@
-import { container, title } from "assets/jss/material-kit-react.js";
+import { raidColors } from "assets/jss/material-kit-react";
+import { grayColor, container, title } from "assets/jss/material-kit-react.js";
 
 const landingPageStyle = {
   container: {
     zIndex: "12",
-    color: "#FFFFFF",
+    color: grayColor,
     ...container
   },
   titleGrid: {
@@ -14,8 +15,8 @@ const landingPageStyle = {
     display: "inline-block",
     marginTop: "30px",
     minHeight: "32px",
-    color: "#FFFFFF",
-    textDecoration: "none"
+    textDecoration: "none",
+    color: raidColors.font.beige
   },
   subtitle: {
     fontSize: "1.313rem",
@@ -28,6 +29,7 @@ const landingPageStyle = {
     zIndex: "3"
   },
   mainRaised: {
+    padding: "2rem",
     margin: "-60px 30px 0px",
     borderRadius: "6px",
     boxShadow:

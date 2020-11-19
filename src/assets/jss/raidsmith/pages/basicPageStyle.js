@@ -51,7 +51,10 @@ export default {
     container: {
         ...container,
         padding: '4em',
-        color: grayColor
+        color: grayColor,
+        "& p, h1, h2, h3": {
+            color: grayColor
+        }
     },
     champThumb: {
         border: `solid ${raidColors.border.width} ${raidColors.border.teal1}`,

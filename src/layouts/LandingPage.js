@@ -25,8 +25,11 @@ import { BackgroundImage } from "helpers/Backgrounds";
 const useStyles = makeStyles(styles);
 
 export default function LandingPage(props) {
-    const { title, subTitle, children, bg } = props;
+    const { pageTitle, title, subTitle, children, bg } = props;
   const classes = useStyles();
+
+  document.title = pageTitle || document.title;
+  
   return (
     <div>
       <Header

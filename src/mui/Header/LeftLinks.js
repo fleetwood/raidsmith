@@ -36,7 +36,7 @@ export default function HeaderLinks(props) {
             <Link to="/" className={classes.dropdownLink}>
               Home
             </Link>,
-            <Link to="/champ" className={classes.dropdownLink}>
+            <Link to="/champs" className={classes.dropdownLink}>
               All Champions
             </Link>,
           ]}

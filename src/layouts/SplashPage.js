@@ -16,9 +16,12 @@ import { BackgroundImage } from "helpers/Backgrounds";
 const useStyles = makeStyles(styles);
 
 export default function SplashPage(props) {
-    const { children, bg } = props;
+  const { pageTitle, children, bg } = props;
+
+  document.title = pageTitle || document.title;
+
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-  setTimeout(function() {
+  setTimeout(function () {
     setCardAnimation("");
   }, 700);
 
@@ -47,7 +50,7 @@ export default function SplashPage(props) {
               </Card>
             </GridItem>
           </GridContainer>
-        }</div>
+          }</div>
         <Footer whiteFont />
       </div>
     </div>

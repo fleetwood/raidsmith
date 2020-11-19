@@ -9,6 +9,7 @@ import {raidColors} from "assets/jss/raid-theme"
 
 import { Thumbnail } from "helpers/Champions";
 import { ChampIcon } from "helpers/Backgrounds";
+import { Link } from "react-router-dom";
 
 const colorLegendary = raidColors.rarity.legendary
     , colorEpic = raidColors.rarity.epic
@@ -153,22 +154,25 @@ const ChampMini = (props) => {
 
     return (
         <GridItem xs={2} className={classes[`border${rarityChamp}`]}>
-            <div className={classes.content}>
-                <div className={classes.champName}>{champ.name}</div>
-                <div>
-                    <img className={classes.auraIcon} 
-                        src={ChampIcon(champ.aura.icon)} 
-                        alt={champ.aura.name} />
+            <Link to={`/champ/${champ.safename}`}>
+                <div className={classes.content}>
+                    <div className={classes.champName}>{champ.name}</div>
+                    <div>
+                        <img className={classes.auraIcon} 
+                            src={ChampIcon(champ.aura.icon)} 
+                            alt={champ.aura.name} />
+                    </div>
+                    <div className={classes.affinityIcon}>
+                        <img className={classes.affinityIcon} 
+                            src={ChampIcon(champ.affinity.icon)} 
+                            alt={champ.affinity.name} />
+                    </div>
+                    <div className={classes.specialtyName}>{champ.specialty.name}</div>
+                    <div className={classes.factionName}>{champ.faction.name}</div>
                 </div>
-                <div className={classes.affinityIcon}>
-                    <img className={classes.affinityIcon} 
-                        src={ChampIcon(champ.affinity.icon)} 
-                        alt={champ.affinity.name} />
-                </div>
-                <div className={classes.specialtyName}>{champ.specialty.name}</div>
-                <div className={classes.factionName}>{champ.faction.name}</div>
-            </div>
-            <img style={{width: '100%'}} src={Thumbnail(champ.thumb)} alt={champ.name} />
+                <img style={{width: '100%'}} src={Thumbnail(champ.thumb)} alt={champ.name} />
+
+            </Link>
         </GridItem>
     )
 }
