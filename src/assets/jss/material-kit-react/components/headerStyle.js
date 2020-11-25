@@ -1,3 +1,4 @@
+import { raidColors } from "assets/jss/material-kit-react";
 import {
   container,
   defaultFont,
@@ -113,6 +114,24 @@ const headerStyle = {
   dark: {
     color: "#FFFFFF",
     backgroundColor: "#212121 !important",
+    boxShadow:
+      "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46)"
+  },
+  storm: {
+    color: raidColors.font.cream,
+    backgroundColor: `${raidColors.bg.storm} !important`,
+    boxShadow:
+      "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46)"
+  },
+  banner: {
+    color: raidColors.font.cream,
+    backgroundColor: `${raidColors.bg.banner} !important`,
+    boxShadow:
+      "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46)"
+  },
+  bleak: {
+    color: raidColors.font.cream,
+    backgroundColor: `${raidColors.bg.bleak} !important`,
     boxShadow:
       "0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(33, 33, 33, 0.46)"
   },

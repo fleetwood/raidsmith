@@ -7,21 +7,23 @@ const robotoSlab = { fontFamily: `"Roboto Slab", "Times New Roman", serif` };
 const roboto = { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }
 
 const raidColors = {
-  red:     "#803356",
-  pink:    "#86367d",
-  purple:  "#44449a",
-  indigo:  "#4228b4",
-  blue:    "#0963b6",
-  cyan:    "#097994",
-  teal:    "#098e80",
-  green:   "#097d50",
-  yellow:  "#888737",
-  orange:  "#886337",
+  red: "#803356",
+  pink: "#86367d",
+  purple: "#44449a",
+  indigo: "#4228b4",
+  blue: "#0963b6",
+  cyan: "#097994",
+  teal: "#098e80",
+  green: "#097d50",
+  yellow: "#888737",
+  orange: "#886337",
 
   font: {
     white: "#ffffff",
     cream: "#e7e3d1",
+    crystal: '#76f4ff',
     beige: "#adab5b",
+    gold: "#b2872f",
     teal: "#6be9fc",
     green: "#22e600"
   },
@@ -32,10 +34,10 @@ const raidColors = {
     teal2: "#11c8e3",
     gold: "#b28324",
     yellow: "#feeb00",
-    black: "#060f15"
+    black: "#060f15",
   },
 
-  rarity:{
+  rarity: {
     empty: "#66603e",
     common: "#aeaeae",
     uncommon: "#1bcf40",
@@ -45,37 +47,16 @@ const raidColors = {
   },
 
   bg: {
-    1: "#114f6d",
-    2: "#1b4562",
-    3: "#173a55",
-    4: "#102b43",
-    5: "#112b37",
     main: "#1c666a",
-    dark: "#092a2f"
+    athel: "#114f6d",
+    darkathel: "#1b4562",
+    banner: "#173a55",
+    storm: "#102b43",
+    sea: "#112b37",
+    bleak: "#092a2f",
+    teal: '#21878a'
   }
 };
-// creates variant of the base colors, 
-// eg. blue10, blue20... blue80, blue90
-// from lightest to darkest
-let colorVariants = [ 
-    raidColors.red, 
-    raidColors.pink, 
-    raidColors.purple, 
-    raidColors.indigo, 
-    raidColors.blue, 
-    raidColors.cyan, 
-    raidColors.teal, 
-    raidColors.green, 
-    raidColors.yellow, 
-    raidColors.orange
-  ], 
-  variants = [10,20,30,40,50,60,70,80,90];
-
-colorVariants.forEach(color => {
-  variants.forEach(variant => {
-    raidColors[color+variant] = darken(color,variant-50)
-  })
-});
 
 const primaryColor = raidColors.teal;
 const primaryRGB = tinycolor(primaryColor).toRgbString();
@@ -104,8 +85,8 @@ const roseRGBA = (op) => tinycolor(roseColor).setAlpha(op).toRgbString()
 const grayColor = "#888";
 
 const boxShadowGradient = (color) => `0 2px 2px 0 ${color}, 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 ${color}`;
-const hoverShadowGradient = (color) => `0 10px 20px -10px ${color}, 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px ${color*.5}`;
-const linearGradient = (color) => `linear-gradient(60deg, ${color}, ${darken(color,7)})`
+const hoverShadowGradient = (color) => `0 10px 20px -10px ${color}, 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px ${color * .5}`;
+const linearGradient = (color) => `linear-gradient(60deg, ${color}, ${darken(color, 7)})`
 const boxShadow = {
   boxShadow: "0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
 };
@@ -183,24 +164,104 @@ const roseCardHeader = {
   background: linearGradient(roseColor),
   ...roseBoxShadow
 };
+const raidTheme = {
+  '@global': {
+    body: {
+      backgroundColor: raidColors.bg.bleak,
+      color: raidColors.font.cream
+    }
+  },
+
+  borderLegendary: {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    border: `solid 2px ${raidColors.rarity.legendary}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${raidColors.rarity.legendary}, white,${raidColors.rarity.legendary})`
+    }
+  },
+  borderEpic: {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    border: `solid 2px ${raidColors.rarity.epic}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${raidColors.rarity.epic}, white,${raidColors.rarity.epic})`
+    }
+  },
+  borderRare: {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    border: `solid 2px ${raidColors.rarity.rare}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${raidColors.rarity.rare}, white,${raidColors.rarity.rare})`
+    }
+  },
+  borderUncommon: {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    border: `solid 2px ${raidColors.rarity.uncommon}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${raidColors.rarity.uncommon}, white,${raidColors.rarity.uncommon})`
+    }
+  },
+  borderCommon: {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    border: `solid 2px ${raidColors.rarity.common}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${raidColors.rarity.common}, white,${raidColors.rarity.common})`
+    }
+  },
+}
 
 const colorProps = [
-    "warning",
-    "success",
-    "danger",
-    "info",
-    "primary",
-    "rose"
+  "warning",
+  "success",
+  "danger",
+  "info",
+  "primary",
+  "rose"
 ];
 
 export {
   //variables
-  primaryColor,primaryRGB,primaryRGBA,
-  warningColor,warningRGB,warningRGBA,
-  dangerColor,dangerRGB,dangerRGBA,
-  successColor,successRGB,successRGBA,
-  infoColor,infoRGB,infoRGBA,
-  roseColor,roseRGB,roseRGBA,
+  raidTheme,
+  primaryColor, primaryRGB, primaryRGBA,
+  warningColor, warningRGB, warningRGBA,
+  dangerColor, dangerRGB, dangerRGBA,
+  successColor, successRGB, successRGBA,
+  infoColor, infoRGB, infoRGBA,
+  roseColor, roseRGB, roseRGBA,
   grayColor,
   raidColors,
   boxShadow,

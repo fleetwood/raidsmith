@@ -1,3 +1,4 @@
+import { raidColors } from "assets/jss/material-kit-react";
 import {
   defaultFont,
   primaryColor,
@@ -30,7 +31,7 @@ const customDropdownStyle = theme => ({
     fontSize: "14px",
     textAlign: "left",
     listStyle: "none",
-    backgroundColor: "#fff",
+    backgroundColor: raidColors.bg.storm,
     backgroundClip: "padding-box"
   },
   menuList: {
@@ -62,7 +63,7 @@ const customDropdownStyle = theme => ({
     clear: "both",
     fontWeight: "400",
     height: "fit-content",
-    color: "#333",
+    color: raidColors.font.beige,
     whiteSpace: "nowrap",
     minHeight: "unset"
   },
@@ -76,43 +77,43 @@ const customDropdownStyle = theme => ({
   },
   primaryHover: {
     "&:hover": {
-      backgroundColor: primaryColor,
-      color: "#FFFFFF",
+      backgroundColor: raidColors.bg.teal,
+      color: raidColors.font.white,
       ...primaryBoxShadow
     }
   },
   infoHover: {
     "&:hover": {
       backgroundColor: infoColor,
-      color: "#FFFFFF",
+      color: raidColors.font.white,
       ...infoBoxShadow
     }
   },
   successHover: {
     "&:hover": {
       backgroundColor: successColor,
-      color: "#FFFFFF",
+      color: raidColors.font.white,
       ...successBoxShadow
     }
   },
   warningHover: {
     "&:hover": {
       backgroundColor: warningColor,
-      color: "#FFFFFF",
+      color: raidColors.font.white,
       ...warningBoxShadow
     }
   },
   dangerHover: {
     "&:hover": {
       backgroundColor: dangerColor,
-      color: "#FFFFFF",
+      color: raidColors.font.white,
       ...dangerBoxShadow
     }
   },
   roseHover: {
     "&:hover": {
       backgroundColor: roseColor,
-      color: "#FFFFFF",
+      color: raidColors.font.white,
       ...roseBoxShadow
     }
   },

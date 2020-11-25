@@ -20,7 +20,11 @@ export default function ChampionList() {
       title="Raidsmith"
       subTitle="The ultimate resource for RAID Shadow Legends."
       >
-        <GridContainer className={classes.container}>
+        <GridContainer 
+          container 
+          spacing={2} 
+          justify="center"
+          className={classes.container}>
         {championsEager.map (champ => 
             <ChampMini champ={champ} />
         )}

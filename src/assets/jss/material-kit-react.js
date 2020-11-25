@@ -1,4 +1,5 @@
 import {
+  raidTheme,
   primaryColor,primaryRGB,primaryRGBA,
   warningColor,warningRGB,warningRGBA,
   dangerColor,dangerRGB,dangerRGBA,
@@ -140,6 +141,7 @@ const cardSubtitle = {
 
 export {
   //variables
+  raidTheme,
   drawerWidth,
   transition,
   container,
