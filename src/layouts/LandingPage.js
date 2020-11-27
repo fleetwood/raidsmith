@@ -19,11 +19,20 @@ import Parallax from "mui/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import Notifications from "views/Components/Notifications";
 import { BackgroundImage } from "helpers/Backgrounds";
-import { raidColors } from "assets/jss/raid-theme";
+import { raidColors } from "assets/jss/material-kit-react";
+
+const pageStyle = {
+  ...styles,
+  mainRaised: {
+    ...styles.mainRaised,
+    background: raidColors.bg.main,
+    color: raidColors.font.beige
+  }
+}
 
 // Sections for this page
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(pageStyle);
 
 export default function LandingPage(props) {
     const { pageTitle, title, subTitle, children, bg } = props;

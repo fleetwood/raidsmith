@@ -43,6 +43,15 @@ export const BackgroundImage = (img) => {
   }
 }
 
+export const SkillIcon = (icon) => {
+  try {
+    return require(`assets/img/skills/${icon}`);
+  }
+  catch (e) {
+    return null;
+  }
+}
+
 export const ChampIcon = (icon) => {
   try {
     return require(`assets/img/icons/${icon}`);

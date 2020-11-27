@@ -42,26 +42,30 @@ export default {
         ...container,
         zIndex: 12,
     },
+    headerClass: {
+      display: 'inline-block',
+      position: 'relative',
+      "& h1": {
+        float: 'left',
+        margin: 0,
+      },
+      '& img': {
+        bottom: '8px',
+        position: 'absolute',
+        marginLeft: '20px',
+        height: '40px'
+      }
+    },
+    champThumb: {
+      right: '5%',
+      top: '-5%',
+      position: 'absolute',
+      border: 'solid 4px',
+    },
     container: {
         zIndex: "12",
         color: grayColor,
         ...container
-    },
-    titleGrid: {
-      textAlign: 'right'
-    },
-    title: {
-      ...title,
-      display: "inline-block",
-      marginTop: "30px",
-      minHeight: "32px",
-      textDecoration: "none",
-      color: raidColors.font.crystal
-    },
-    subtitle: {
-      fontSize: "1.313rem",
-      maxWidth: "500px",
-      margin: "10px auto 0"
     },
     main: {
       background: raidColors.bg.athel,

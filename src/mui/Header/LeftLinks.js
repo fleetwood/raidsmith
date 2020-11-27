@@ -39,6 +39,9 @@ export default function HeaderLinks(props) {
             <Link to="/champs" className={classes.dropdownLink}>
               All Champions
             </Link>,
+            <Link to="/skills" className={classes.dropdownLink}>
+              All Skills
+            </Link>,
           ]}
         />
       </ListItem>

@@ -45,18 +45,21 @@ export default {
         width: '90%',
         textTransform: 'uppercase',
         textShadow: `0px 2px 2px black`,
+        color: raidColors.font.white
     },
     factionName: {
-        textShadow: `2px 3px 2px black`,
+        textShadow: `2px 2px 0px black`,
         position: 'absolute',
         bottom: '8px',
         fontWeight: 400,
+        color: raidColors.font.white
     },
     specialtyName: {
-        textShadow: `2px 3px 2px black`,
+        textShadow: `2px 2px 0px black`,
         position: 'absolute',
         bottom: '28px',
         fontWeight: 600,
+        color: raidColors.font.crystal
     },
     affinityIcon: {
         position: `absolute`,

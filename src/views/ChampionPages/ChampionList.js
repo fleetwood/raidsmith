@@ -24,10 +24,11 @@ export default function ChampionList() {
           container 
           spacing={2} 
           justify="center"
-          className={classes.container}>
-        {championsEager.map (champ => 
+          className={classes.container}
+          >
+          {championsEager.map (champ => 
             <ChampMini champ={champ} />
-        )}
+          )}
         </GridContainer>
     </LandingPage>
   );

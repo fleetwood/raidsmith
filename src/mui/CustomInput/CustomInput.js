@@ -24,7 +24,12 @@ export default function CustomInput(props) {
     error,
     white,
     inputRootCustomClasses,
-    success
+    success,
+    onChange,
+    onKeyUp,
+    onKeyDown,
+    onKey,
+    value
   } = props;
 
   const labelClasses = classNames({
@@ -71,8 +76,12 @@ export default function CustomInput(props) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
+        onKeyUp={onKeyUp || onKey}
+        onKeyDown={onKeyDown || onKey}
+        onChange={onChange}
         id={id}
         {...inputProps}
+        value={value}
       />
     </FormControl>
   );
@@ -82,10 +91,15 @@ CustomInput.propTypes = {
   labelText: PropTypes.node,
   labelProps: PropTypes.object,
   id: PropTypes.string,
+  value: PropTypes.string,
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
   inputRootCustomClasses: PropTypes.string,
   error: PropTypes.bool,
   success: PropTypes.bool,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  onKeyUp: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onKey: PropTypes.func,
+  onChange: PropTypes.func
 };

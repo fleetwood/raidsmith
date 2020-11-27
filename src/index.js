@@ -6,18 +6,22 @@ import { Router, Route, Switch } from "react-router-dom";
 import "assets/scss/material-kit-react.scss?v=1.9.0";
 
 // pages for this product
-import Components from "views/Components/Components.js";
-import HomePage from "views/HomePage/HomePage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import LoginPage from "views/LoginPage/LoginPage.js";
-import ChampionDetail from "views/ChampionPages/ChampionDetail.js";
-import ChampionList from "views/ChampionPages/ChampionList.js";
+import Components from "views/Components/Components";
+import HomePage from "views/HomePage/HomePage";
+import ProfilePage from "views/ProfilePage/ProfilePage";
+import LoginPage from "views/LoginPage/LoginPage";
+import ChampionDetail from "views/ChampionPages/ChampionDetail";
+import ChampionList from "views/ChampionPages/ChampionList";
+import SkillDetail from "views/SkillPages/SkillDetail";
+import SkillList from "views/SkillPages/SkillList";
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
+      <Route path="/skill/:id" component={SkillDetail} />
+      <Route path="/skills" component={SkillList} />
       <Route path="/champ/:id" component={ChampionDetail} />
       <Route path="/champions" component={ChampionList} />
       <Route path="/champs" component={ChampionList} />

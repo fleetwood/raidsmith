@@ -21,12 +21,19 @@ import Notifications from "views/Components/Notifications";
 import { BackgroundImage } from "helpers/Backgrounds";
 import { raidColors } from "assets/jss/raid-theme";
 
-// Sections for this page
+const mediaFor = faction => {
+  try {
+    return require(`assets/media/${faction}.mp4`)
+  }
+  catch (e) {
+    return require(`assets/media/main_page.mp4`)
+  }
+}
 
 const useStyles = makeStyles(styles);
 
 export default function DetailPage(props) {
-    const { pageTitle, title, subTitle, children, bg } = props;
+    const { pageTitle, header, children, bg, media } = props;
   const classes = useStyles();
 
   document.title = pageTitle || document.title;
@@ -44,12 +51,14 @@ export default function DetailPage(props) {
         }}
       />
       <Parallax filter small image={BackgroundImage(bg)}>
+        <video autoPlay="autoplay" loop="loop" muted style={{height: '100%', position: 'absolute', borderBottom: 'solid 2px'}}>
+          <source src={mediaFor(media)} type="video/mp4" />
+          Unable to playback video.
+        </video>
         <div className={classes.headerContainer}>
           <GridContainer>
-            <GridItem xs={12} className={classes.titleGrid}>
-              <h1 className={classes.title}>{title}</h1>
-              <br/>
-              {subTitle}
+            <GridItem xs={12}>
+              {header}
             </GridItem>
           </GridContainer>
         </div>

@@ -50,25 +50,24 @@ export default function ChampionDetail(props) {
             <DetailPage
                 bg="random render"
                 pageTitle={`RAIDsmith / Champions / ${champ.name || 'Champion'}`}
-                title={champ.name}
-                subTitle="RAIDSMITH"
-            >
-                <img src={Thumbnail(champ.thumb)} alt={champ.name} />
-                <h1 className={classes.champName}>{champ.name}</h1>
-                <GridContainer container justify="space-evenly">
-                    <GridItem xs={12} m={3}>
-                        <div className={classes.affinityIcon}>
+                media={champ.faction.video}
+                header={(
+                    <div>
+                        <div className={classes.headerClass}>
+                            <h1 className={classes.champName}>{champ.name}</h1>
                             <img className={classes.affinityIcon}
                                 src={ChampIcon(champ.affinity.icon)}
                                 alt={champ.affinity.name} />
-                            <img className={classes.auraIcon}
-                                src={ChampIcon(champ.aura.icon)}
-                                alt={champ.aura.name} />
                         </div>
                         <h3 className={classes.specialtyName}>{champ.specialty.name}</h3>
                         <h4 className={classes.factionName}>{champ.faction.name}</h4>
-                    </GridItem>
-                    <GridItem xs={12} m={9}>
+                    </div>
+                )}
+                >
+                <img className={classes.champThumb} src={Thumbnail(champ.thumb)} alt={champ.name} />
+                
+                <GridContainer container justify="space-evenly">
+                    <GridItem xs={12} md={9}>
                         <div>HP: {champ.HP}</div>
                         <div>Attack: {champ.attack}</div>
                         <div>Defense: {champ.defense}</div>
@@ -78,6 +77,17 @@ export default function ChampionDetail(props) {
                         <div>ACC: {champ.accuracy}</div>
                         <div>Resist: {champ.resist}</div>
                     </GridItem>
+                    {champ.aura !== 0 && (
+                        <GridItem xs={12} md={9}>
+                            <h5>
+                                {champ.aura.name}&nbsp;
+                                <img className={classes.auraIcon}
+                                    src={ChampIcon(champ.aura.icon)}
+                                    alt={champ.aura.name} />
+                            </h5>
+                            <div>{champ.aura.description}</div>
+                        </GridItem>
+                    )}
                 </GridContainer>
 
             </DetailPage>
