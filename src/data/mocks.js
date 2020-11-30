@@ -1,3 +1,16 @@
+const rand = (min,max) => Math.floor(min + Math.random() * ((max - min + 1)));
+
+const randChampion = () => mocks.champions[rand(1,mocks.champions.length)]
+
+const randChampions = () => {
+    let count = rand(1,10),
+        result = [];
+    while(count-- > 0) {
+        result.push(randChampion())
+    }
+    return result;
+}
+
 const mocks = {
     champions:
         [
@@ -495,7 +508,6 @@ const mocks = {
             , { id: 492, name: "Zephyr Sniper", safename: "zephyr-sniper", thumb: "6db291ac9963003618ca6aa15063c4d6.png", rarity: { id: 2, name: 'Uncommon', safename: 'uncommon' }, faction: 4, affinity: 2, specialty: 3, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
             , { id: 493, name: "Little Miss Annie", safename: "little-miss-annie", thumb: "1e69276e3d5650de297e980aa4f59671.png", rarity: { id: 5, name: 'Legendary', safename: 'legendary' }, faction: 10, affinity: 4, specialty: 4, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
         ]
-
     ,
     factions: [
         { id: 1, name: 'Banner Lords', safename: 'banner-lords', video: '01', icon: '' },
@@ -541,12 +553,12 @@ const mocks = {
         { id: 7, name: 'ATK', description: "Increases ACC by X in Y situation.",icon: 'atk_aura_icon.png' },
     ],
     skills: [
-        { id: 1, name: "Ally Protection [25%]", safename: "ally-protection-25", thumb: "image-buff-ally-protection.png", description: "This champion takes 25% of direct damage inflicted upon the target champion. Self-inflicted damage and Poison do not trigger this effect. Each champion uses their respective DEF values" },
-        { id: 2, name: "Ally Protection [50%]", safename: "ally-protection-50", thumb: "image-buff-ally-protection-2.png", description: "This champion takes 50% of direct damage inflicted upon the Target champion. Self-inflicted damage and Poison do not trigger this effect. Each champion uses their respective DEF values" },
-        { id: 3, name: "Block Buffs", safename: "block-buffs", thumb: "image-debuff-block-buffs.png", description: "Blocks all buffs from being applied to this champion." },
-        { id: 4, name: "Block Cooldown Skills", safename: "block-cooldown-skills", thumb: "image-debuff-block-cooldown-skills.png", description: "Prevents target from using Cooldown Skills." },
-        { id: 5, name: "Block Damage", safename: "block-damage", thumb: "image-buff-block-damage.png", description: "Reduces all normal damage applied to this champion to 0. Does not block effects." },
-        { id: 6, name: "Block Debuffs", safename: "block-debuffs", thumb: "image-buff-block-debuffs.png", description: "Champion is immune to all debuffs. Does not block instant negative effect, such as Decrease Turn Meter." },
+        { id: 1, name: "Ally Protection [25%]", safename: "ally-protection-25", thumb: "image-buff-ally-protection.png", description: "This champion takes 25% of direct damage inflicted upon the target champion. Self-inflicted damage and Poison do not trigger this effect. Each champion uses their respective DEF values", champions: [1,2,3,4] },
+        { id: 2, name: "Ally Protection [50%]", safename: "ally-protection-50", thumb: "image-buff-ally-protection-2.png", description: "This champion takes 50% of direct damage inflicted upon the Target champion. Self-inflicted damage and Poison do not trigger this effect. Each champion uses their respective DEF values", champions: [5,6,7,8,8] },
+        { id: 3, name: "Block Buffs", safename: "block-buffs", thumb: "image-debuff-block-buffs.png", description: "Blocks all buffs from being applied to this champion.", champions: [23,305,65,67,33,22,14,56,79,215,287] },
+        { id: 4, name: "Block Cooldown Skills", safename: "block-cooldown-skills", thumb: "image-debuff-block-cooldown-skills.png", description: "Prevents target from using Cooldown Skills.", champions: [32,66,111,231,103,100,200,334,1,7] },
+        { id: 5, name: "Block Damage", safename: "block-damage", thumb: "image-buff-block-damage.png", description: "Reduces all normal damage applied to this champion to 0. Does not block effects." , champions: [3,6,23,54,77,232,135]},
+        { id: 6, name: "Block Debuffs", safename: "block-debuffs", thumb: "image-buff-block-debuffs.png", description: "Champion is immune to all debuffs. Does not block instant negative effect, such as Decrease Turn Meter.", champions: [] },
         { id: 7, name: "Bomb", safename: "bomb", thumb: "image-debuff-bomb.png", description: "When this debuff expires, deals direct damage, ignoring DEF." },
         { id: 8, name: "Continuous Heal [7.5%]", safename: "continuous-heal-75", thumb: "image-buff-continuous-heal.png", description: "Heals the target champion by 7.5% of MAX HP at the beginning of their turn." },
         { id: 9, name: "Continuous Heal [15%]", safename: "continuous-heal-15", thumb: "image-buff-continuous-heal-2.png", description: "Heals the target champion by 15% of MAX HP at the beginning of their turn." },
@@ -1111,5 +1123,11 @@ const championsEager =
         , { id: 493, name: "Little Miss Annie", safename: "little-miss-annie", thumb: "1e69276e3d5650de297e980aa4f59671.png", rarity: { id: 5, name: 'Legendary', safename: 'legendary' }, faction: { id: 10, name: "Undead Hordes", safename: "undead-hordes", video: "13", icon: "" }, affinity: { id: 4, name: "Void", safename: "void", icon: "void_icon.png" }, specialty: { id: 4, name: "Support" }, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
     ]
 
+const skillsEager = mocks.skills.map(s => {
+    return {
+        ...s,
+        champions: randChampions()
+    }
+})
 
-export { mocks, championsEager };
+export { mocks, championsEager, skillsEager };

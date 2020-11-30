@@ -33,7 +33,7 @@ const mediaFor = faction => {
 const useStyles = makeStyles(styles);
 
 export default function DetailPage(props) {
-    const { pageTitle, header, children, bg, media } = props;
+  const { pageTitle, header, children, bg, media } = props;
   const classes = useStyles();
 
   document.title = pageTitle || document.title;

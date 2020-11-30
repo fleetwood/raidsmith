@@ -1,8 +1,124 @@
-import CustomInput from "mui/CustomInput/CustomInput";
 import React, { Fragment, useState } from "react";
+import PropTypes from "prop-types";
 
-export default function Autocomplete(props) {
-    const { label, id, suggestions } = props;
+import { makeStyles } from "@material-ui/core";
+import { 
+    raidColors,
+    boxShadow 
+} from "assets/jss/raid-theme";
+
+import CustomInput from "mui/CustomInput/CustomInput";
+
+export class autoType {
+    static skill = 'skill';
+    static aura = 'aura';
+    static champion = 'champion'
+}
+
+const baseStyle = {
+    dropDown: {
+        ...boxShadow,
+        padding: "1rem",
+        position: "absolute",
+        width: "100%",
+        zIndex: 1,
+        borderRadius: "0px 0px 10px 10px",
+        marginTop: '-15px',
+        transition: 'all 0.2s',
+        "& li": {
+            transition: 'all 0.2s',
+            listStyleType: 'none',
+            cursor: 'pointer',
+            padding: '5px 15px',
+        }
+    }
+}
+
+const autocompleteStyle = {
+    athel: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.athel,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    darkathel: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.darkathel,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    banner: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.banner,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    storm: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.storm,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    teal: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.teal,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    sea: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.sea,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    },
+    bleak: {
+        dropDown: {
+            ...baseStyle.dropDown,
+            background: raidColors.bg.bleak,
+            color: raidColors.font.cream,
+            "& li:hover": {
+                background: raidColors.bg.main,
+                color: raidColors.font.crystal
+            }
+        }
+    }
+}
+
+
+export function AutoDropdown(props) {
+    const { label, id, suggestions, type, color } = props;
+    const useStyles = makeStyles(autocompleteStyle[color || 'teal']);
+    const classes = useStyles();
 
     const [status, setStatus] = useState({
         activeSuggestion: 0,
@@ -73,7 +189,7 @@ export default function Autocomplete(props) {
     if (status.showSuggestions && status.userInput) {
         if (status.filteredSuggestions.length) {
             suggestionsListComponent = (
-                <ul class="suggestions">
+                <ul class={classes.dropDown}>
                     {status.filteredSuggestions.map((suggestion, index) => {
                         let className;
 
@@ -111,9 +227,6 @@ export default function Autocomplete(props) {
                 formControlProps={{
                     fullWidth: true
                 }}
-                // inputProps={{
-                //     endAdornment: (<InputAdornment position="end"><People/></InputAdornment>)
-                // }}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 value={status.userInput}
@@ -121,4 +234,8 @@ export default function Autocomplete(props) {
             {suggestionsListComponent}
         </Fragment>
     );
+}
+
+AutoDropdown.propTypes = {
+    type: PropTypes.oneOfType(autoType),
 }

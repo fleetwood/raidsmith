@@ -10,6 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 
 import styles from "assets/jss/material-kit-react/components/customInputStyle.js";
+import { raidColors } from "assets/jss/raid-theme";
 
 const useStyles = makeStyles(styles);
 
@@ -82,6 +83,9 @@ export default function CustomInput(props) {
         id={id}
         {...inputProps}
         value={value}
+        inputProps={{
+          style: {color: `${raidColors.font.crystal} !important`}
+        }}
       />
     </FormControl>
   );
