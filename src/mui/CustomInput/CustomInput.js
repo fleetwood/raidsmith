@@ -9,8 +9,88 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 
-import styles from "assets/jss/material-kit-react/components/customInputStyle.js";
+import inputStyles from "assets/jss/material-kit-react/components/customInputStyle.js";
 import { raidColors } from "assets/jss/raid-theme";
+
+const bolder = { fontWeight: 700 };
+const styles = {
+  ...inputStyles,
+  goldInput: {
+    ...bolder,
+    "&,&::placeholder": {
+      color: raidColors.font.gold,
+      opacity: "1"
+    }
+  },
+  goldUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: raidColors.font.gold
+    },
+    "&:after": {
+      borderColor: raidColors.font.gold
+    }
+  },
+  beigeInput: {
+    ...bolder,
+    "&,&::placeholder": {
+      color: raidColors.font.beige,
+      opacity: "1"
+    }
+  },
+  beigeUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: raidColors.font.beige
+    },
+    "&:after": {
+      borderColor: raidColors.font.beige
+    }
+  },
+  crystalInput: {
+    ...bolder,
+    "&,&::placeholder": {
+      color: raidColors.font.crystal,
+      opacity: "1"
+    }
+  },
+  crystalUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: raidColors.font.crystal
+    },
+    "&:after": {
+      borderColor: raidColors.font.crystal
+    }
+  },
+  tealInput: {
+    ...bolder,
+    "&,&::placeholder": {
+      color: raidColors.font.teal,
+      opacity: "1"
+    }
+  },
+  tealUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: raidColors.font.teal
+    },
+    "&:after": {
+      borderColor: raidColors.font.teal
+    }
+  },
+  greenInput: {
+    ...bolder,
+    "&,&::placeholder": {
+      color: raidColors.font.green,
+      opacity: "1"
+    }
+  },
+  greenUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: raidColors.font.green
+    },
+    "&:after": {
+      borderColor: raidColors.font.green
+    }
+  },
+}
 
 const useStyles = makeStyles(styles);
 
@@ -24,6 +104,11 @@ export default function CustomInput(props) {
     inputProps,
     error,
     white,
+    gold,
+    beige,
+    crystal,
+    teal,
+    green,
     inputRootCustomClasses,
     success,
     onChange,
@@ -41,14 +126,24 @@ export default function CustomInput(props) {
     [classes.underlineError]: error,
     [classes.underlineSuccess]: success && !error,
     [classes.underline]: true,
-    [classes.whiteUnderline]: white
+    [classes.whiteUnderline]: white,
+    [classes.goldUnderline]: gold,
+    [classes.beigeUnderline]: beige,
+    [classes.crystalUnderline]: crystal,
+    [classes.tealUnderline]: teal,
+    [classes.greenUnderline]: green,
   });
   const marginTop = classNames({
     [inputRootCustomClasses]: inputRootCustomClasses !== undefined
   });
   const inputClasses = classNames({
     [classes.input]: true,
-    [classes.whiteInput]: white
+    [classes.whiteInput]: white,
+    [classes.goldInput]: gold,
+    [classes.beigeInput]: beige,
+    [classes.crystalInput]: crystal,
+    [classes.tealInput]: teal,
+    [classes.greenInput]: green,
   });
   var formControlClasses;
   if (formControlProps !== undefined) {
@@ -83,9 +178,6 @@ export default function CustomInput(props) {
         id={id}
         {...inputProps}
         value={value}
-        inputProps={{
-          style: {color: `${raidColors.font.crystal} !important`}
-        }}
       />
     </FormControl>
   );

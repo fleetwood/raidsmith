@@ -2,11 +2,21 @@ const rand = (min,max) => Math.floor(min + Math.random() * ((max - min + 1)));
 
 const randChampion = () => mocks.champions[rand(1,mocks.champions.length)]
 
+const randSkill = () => mocks.skills[rand(1,mocks.skills.length)];
+
 const randChampions = () => {
     let count = rand(1,10),
         result = [];
     while(count-- > 0) {
         result.push(randChampion())
+    }
+    return result;
+}
+const randSkills = () => {
+    let count = rand(0,4),
+        result = [];
+    while(count-- > 0) {
+        result.push(randSkill())
     }
     return result;
 }
@@ -1121,7 +1131,12 @@ const championsEager =
         , { id: 491, name: "Zelotah", safename: "zelotah", thumb: "00ac8ed3b4327bdd4ebbebcb2ba10a00.png", rarity: { id: 4, name: 'Epic', safename: 'epic' }, faction: { id: 10, name: "Undead Hordes", safename: "undead-hordes", video: "13", icon: "" }, affinity: { id: 2, name: "Spirit", safename: "spirit", icon: "spirit_icon.png" }, specialty: { id: 2, name: 'Attack' }, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
         , { id: 492, name: "Zephyr Sniper", safename: "zephyr-sniper", thumb: "6db291ac9963003618ca6aa15063c4d6.png", rarity: { id: 2, name: 'Uncommon', safename: 'uncommon' }, faction: { id: 4, name: "Barbarians", safename: "barbarians", video: "02", icon: "" }, affinity: { id: 2, name: "Spirit", safename: "spirit", icon: "spirit_icon.png" }, specialty: { id: 3, name: 'Defense' }, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
         , { id: 493, name: "Little Miss Annie", safename: "little-miss-annie", thumb: "1e69276e3d5650de297e980aa4f59671.png", rarity: { id: 5, name: 'Legendary', safename: 'legendary' }, faction: { id: 10, name: "Undead Hordes", safename: "undead-hordes", video: "13", icon: "" }, affinity: { id: 4, name: "Void", safename: "void", icon: "void_icon.png" }, specialty: { id: 4, name: "Support" }, hp: 0, attack: 0, defense: 0, crate: 0, cdamage: 0, speed: 0, resist: 0, accuracy: 0, aura: 0 }
-    ]
+    ].map(c => {
+        return {
+            ...c,
+            skills: randSkills()
+        }
+    });
 
 const skillsEager = mocks.skills.map(s => {
     return {

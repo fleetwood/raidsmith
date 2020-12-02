@@ -6,3 +6,5 @@ export const Thumbnail = (thumb) => {
         return require(`assets/img/champs/default.png`);
     }
 }
+
+export const rarityBorder = rarity => `border${rarity}`;

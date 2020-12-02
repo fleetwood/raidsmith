@@ -11,6 +11,9 @@ import { ChampIcon } from "helpers/Backgrounds";
 import SplashPage from "layouts/SplashPage";
 import GridContainer from "mui/Grid/GridContainer";
 import GridItem from "mui/Grid/GridItem";
+import { SkillIcon } from "helpers/Backgrounds";
+import Section from "views/Components/Section";
+import ChampThumb from "./ChampThumb";
 
 const useStyles = makeStyles(styles);
 
@@ -18,7 +21,9 @@ export default function ChampionDetail(props) {
     let champ;
     const noChamp = () => (champ === undefined || champ === null);
 
-    let id = props.match.params.id;
+    const classes = useStyles();
+    let id = props.match.params.id
+      , usecase = 'Unknown';
 
     if (isNaN(Number(id))) {
         champ = championsEager.filter(c => c.safename.toLowerCase() === id.toLowerCase())[0]
@@ -26,9 +31,6 @@ export default function ChampionDetail(props) {
     else {
         champ = championsEager.filter(c => c.id === Number(id))[0];
     }
-
-    const classes = useStyles();
-    let usecase = 'Unknown'
 
     if (noChamp()) {
         championsEager.forEach(c => {
@@ -64,31 +66,56 @@ export default function ChampionDetail(props) {
                     </div>
                 )}
                 >
-                <img className={classes.champThumb} src={Thumbnail(champ.thumb)} alt={champ.name} />
+                <ChampThumb detail aura affinity champ={champ} />
                 
-                <GridContainer container justify="space-evenly">
-                    <GridItem xs={12} md={9}>
-                        <div>HP: {champ.HP}</div>
-                        <div>Attack: {champ.attack}</div>
-                        <div>Defense: {champ.defense}</div>
-                        <div>Speed: {champ.speed}</div>
-                        <div>Crit. Rate: {champ.crate}</div>
-                        <div>Crit. Dmg: {champ.cdamage}</div>
-                        <div>ACC: {champ.accuracy}</div>
-                        <div>Resist: {champ.resist}</div>
-                    </GridItem>
-                    {champ.aura !== 0 && (
+                <Section title='Stats'>
+                    <GridContainer container justify="space-evenly">
                         <GridItem xs={12} md={9}>
-                            <h5>
-                                {champ.aura.name}&nbsp;
-                                <img className={classes.auraIcon}
-                                    src={ChampIcon(champ.aura.icon)}
-                                    alt={champ.aura.name} />
-                            </h5>
-                            <div>{champ.aura.description}</div>
+                            <div>HP: {champ.HP}</div>
+                            <div>Attack: {champ.attack}</div>
+                            <div>Defense: {champ.defense}</div>
+                            <div>Speed: {champ.speed}</div>
+                            <div>C. Rate: {champ.crate}</div>
+                            <div>C. Dmg: {champ.cdamage}</div>
+                            <div>ACC: {champ.accuracy}</div>
+                            <div>Resist: {champ.resist}</div>
                         </GridItem>
-                    )}
-                </GridContainer>
+                    </GridContainer>
+                </Section>
+                
+                {champ.aura !== 0 && (
+                    <Section title='Aura'>
+                        <GridContainer container justify="space-evenly">
+                            <GridItem xs={12} md={9}>
+                                <h5>
+                                    <img className={classes.auraIcon}
+                                        src={ChampIcon(champ.aura.icon)}
+                                        alt={champ.aura.name} />
+                                    &nbsp;{champ.aura.name}
+                                </h5>
+                                <div>{champ.aura.description}</div>
+                            </GridItem>
+                        </GridContainer>
+                    </Section>
+                )}
+                
+                {champ.skills !== 0 && 
+                    <Section title='Skills'>
+                        <GridContainer container justify="space-evenly">
+                        {champ.skills.map(skill => (
+                            <GridItem xs={12} md={9}>
+                                <h5>
+                                    <img className={classes.skillIcon}
+                                        src={SkillIcon(skill.thumb)}
+                                        alt={skill.name} />
+                                    &nbsp;{skill.name}
+                                </h5>
+                                <div>{skill.description}</div>
+                            </GridItem>
+                        ))}
+                        </GridContainer>
+                    </Section>
+                }
 
             </DetailPage>
         )

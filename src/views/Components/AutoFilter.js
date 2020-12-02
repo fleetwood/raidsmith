@@ -23,6 +23,7 @@ export function AutoFilter(props) {
                 formControlProps={{fullWidth: true}}
                 onKeyDown={filter}
                 onChange={filter}
+                crystal
             />
         </Fragment>
     );

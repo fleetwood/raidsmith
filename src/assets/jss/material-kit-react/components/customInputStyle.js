@@ -30,14 +30,6 @@ const customInputStyle = {
       borderColor: successColor
     }
   },
-  whiteUnderline: {
-    "&:hover:not($disabled):before,&:before": {
-      borderColor: "#FFFFFF"
-    },
-    "&:after": {
-      borderColor: "#FFFFFF"
-    }
-  },
   labelRoot: {
     ...defaultFont,
     color: "#AAAAAA !important",
@@ -83,7 +75,15 @@ const customInputStyle = {
       color: "#FFFFFF",
       opacity: "1"
     }
-  }
+  },
+  whiteUnderline: {
+    "&:hover:not($disabled):before,&:before": {
+      borderColor: "#FFFFFF"
+    },
+    "&:after": {
+      borderColor: "#FFFFFF"
+    }
+  },
 };
 
 export default customInputStyle;

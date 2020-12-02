@@ -164,6 +164,29 @@ const roseCardHeader = {
   background: linearGradient(roseColor),
   ...roseBoxShadow
 };
+
+const borderRarity = (color) => {
+  return {
+    position: 'relative',
+    margin: '3px',
+    padding: '3px',
+    boxShadow: '0px 10px 20px #00000066',
+    maxWidth: 'max-content',
+    border: `solid 2px ${color}`,
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0, right: 0, bottom: 0, left: 0,
+      zIndex: -1,
+      margin: 0,
+      background: `linear-gradient(to bottom, ${color},white,${color})`
+    },
+    '&:hover': {
+      boxShadow: `0px 0px 20px ${color}`,
+    }
+  }
+}
+
 const raidTheme = {
   '@global': {
     body: {
@@ -171,77 +194,11 @@ const raidTheme = {
       color: raidColors.font.cream
     }
   },
-
-  borderLegendary: {
-    position: 'relative',
-    margin: '3px',
-    padding: '3px',
-    border: `solid 2px ${raidColors.rarity.legendary}`,
-    '&:before': {
-      content: `''`,
-      position: 'absolute',
-      top: 0, right: 0, bottom: 0, left: 0,
-      zIndex: -1,
-      margin: 0,
-      background: `linear-gradient(to bottom, ${raidColors.rarity.legendary}, white,${raidColors.rarity.legendary})`
-    }
-  },
-  borderEpic: {
-    position: 'relative',
-    margin: '3px',
-    padding: '3px',
-    border: `solid 2px ${raidColors.rarity.epic}`,
-    '&:before': {
-      content: `''`,
-      position: 'absolute',
-      top: 0, right: 0, bottom: 0, left: 0,
-      zIndex: -1,
-      margin: 0,
-      background: `linear-gradient(to bottom, ${raidColors.rarity.epic}, white,${raidColors.rarity.epic})`
-    }
-  },
-  borderRare: {
-    position: 'relative',
-    margin: '3px',
-    padding: '3px',
-    border: `solid 2px ${raidColors.rarity.rare}`,
-    '&:before': {
-      content: `''`,
-      position: 'absolute',
-      top: 0, right: 0, bottom: 0, left: 0,
-      zIndex: -1,
-      margin: 0,
-      background: `linear-gradient(to bottom, ${raidColors.rarity.rare}, white,${raidColors.rarity.rare})`
-    }
-  },
-  borderUncommon: {
-    position: 'relative',
-    margin: '3px',
-    padding: '3px',
-    border: `solid 2px ${raidColors.rarity.uncommon}`,
-    '&:before': {
-      content: `''`,
-      position: 'absolute',
-      top: 0, right: 0, bottom: 0, left: 0,
-      zIndex: -1,
-      margin: 0,
-      background: `linear-gradient(to bottom, ${raidColors.rarity.uncommon}, white,${raidColors.rarity.uncommon})`
-    }
-  },
-  borderCommon: {
-    position: 'relative',
-    margin: '3px',
-    padding: '3px',
-    border: `solid 2px ${raidColors.rarity.common}`,
-    '&:before': {
-      content: `''`,
-      position: 'absolute',
-      top: 0, right: 0, bottom: 0, left: 0,
-      zIndex: -1,
-      margin: 0,
-      background: `linear-gradient(to bottom, ${raidColors.rarity.common}, white,${raidColors.rarity.common})`
-    }
-  },
+  borderLegendary: borderRarity(raidColors.rarity.legendary),
+  borderEpic: borderRarity(raidColors.rarity.epic),
+  borderRare: borderRarity(raidColors.rarity.rare),
+  borderUncommon: borderRarity(raidColors.rarity.uncommon),
+  borderCommon: borderRarity(raidColors.rarity.common),
 }
 
 const colorProps = [

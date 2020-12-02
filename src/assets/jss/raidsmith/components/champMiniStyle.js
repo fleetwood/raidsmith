@@ -27,9 +27,10 @@ export default {
             color: grayColor
         }
     },
-    champThumb: {
-        border: `solid ${raidColors.border.width} ${raidColors.border.teal1}`,
-        color: raidColors.blue
+    detailThumb: {
+        right: '45px',
+        top: '-45px',
+        position: 'absolute'
     },
     content: {
         top: '0',
@@ -38,9 +39,13 @@ export default {
         color: raidColors.font.white,
         width: '100%',
         height: '100%',
+        overflow: 'hidden',
+        "& :hover" : {
+            overflow: 'visible'
+        }
     },
     champName: {
-        fontSize: '1.1rem',
+        fontSize: 'calc(10px + (4) * (100vw / 800))',
         fontWeight: 700,
         width: '90%',
         textTransform: 'uppercase',
@@ -48,17 +53,19 @@ export default {
         color: raidColors.font.white
     },
     factionName: {
+        fontWeight: 400,
+        fontSize: 'calc(8px + (6) * (100vw / 800))',
         textShadow: `2px 2px 0px black`,
         position: 'absolute',
         bottom: '8px',
-        fontWeight: 400,
         color: raidColors.font.white
     },
     specialtyName: {
+        fontWeight: 600,
+        fontSize: 'calc(8px + (6) * (100vw / 800))',
         textShadow: `2px 2px 0px black`,
         position: 'absolute',
         bottom: '28px',
-        fontWeight: 600,
         color: raidColors.font.crystal
     },
     affinityIcon: {
